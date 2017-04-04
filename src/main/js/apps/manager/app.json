@@ -1,0 +1,49 @@
+{
+  "appName": "management",
+  "properties": {
+    "title": "Manager"
+  },
+  "load": {
+    "allowedBundles": [
+      "system",
+      "splashscreen",
+      "notifier",
+      "templatelayout",
+      "toolset",
+      "managementlayout",
+      "theme-everlasting",
+      "mapapps-github-manager"
+    ],
+    "bundleLocations": [
+      "localbundles",
+      "bundles"
+    ]
+  },
+  "bundles": {
+    "templates": {
+      "TemplateModel": {
+        "_selectedTemplate": "",
+        "_templates": []
+      }
+    },
+    "toolset": {
+      "ToolsetManager": {
+        "toolsets": [
+          {
+            "id": "default_tools",
+            "tools": [
+              "appmanagement_*"
+            ],
+            "container": "desktopbackground",
+            "cssClass": "buildertoolsMenuBar",
+            "windowType": "menubar",
+            "position": {
+              "rel_t": 7,
+              "rel_l": 10
+            }
+          }
+        ]
+      }
+    }
+  }
+}

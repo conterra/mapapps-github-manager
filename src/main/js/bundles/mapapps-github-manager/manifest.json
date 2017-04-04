@@ -1,0 +1,234 @@
+{
+  "name": "mapapps-github-manager",
+  "version": "1.0.0-SNAPSHOT",
+  "title": "${bundleName}",
+  "description": "${bundleDescription}",
+  "vendor": "con terra GmbH",
+  "productName": "mapapps-github-manager",
+  "keywords": [
+    "manager"
+  ],
+  "dependencies": {
+    "dataform": "^4.0.0",
+    "dataview": "^4.0.0"
+  },
+  "layout-widgets": [
+    {
+      "widgetRole": "githubBundlesView",
+      "attachTo": "manager-tabbed-window",
+      "window": {
+        "dockTool": "appmanagement_githubBundleListTool"
+      }
+    }
+  ],
+  "components": [
+    {
+      "name": "BundleStore",
+      "provides": [
+        "ct.api.Store",
+        "mapapps-github-manager.BundleStore"
+      ],
+      "propertiesConstructor": true,
+      "properties": {
+        "id": "githubBundlesStore",
+        "useIn": [
+          "mapapps-github-manager"
+        ],
+        "target": "https://api.github.com/search/repositories",
+        "itemProperty": "data"
+      }
+    },
+    {
+      "name": "BundleListTool",
+      "impl": "ct/tools/Tool",
+      "provides": [
+        "ct.tools.Tool"
+      ],
+      "propertiesConstructor": true,
+      "properties": {
+        "id": "appmanagement_githubBundleListTool",
+        "title": "${bundleListTool.title}",
+        "tooltip": "${bundleListTool.desc}",
+        "priority": 6,
+        "toolRole": "toolset",
+        "togglable": true,
+        "iconClass": "icon-github",
+        "rules": {
+          "roles": [
+            "maAdmin"
+          ],
+          "ruleSuccessProperty": "visibility"
+        }
+      }
+    },
+    {
+      "name": "BundleViewToolbar",
+      "impl": "ct/tools/ToolContainer",
+      "provides": [
+        "mapapps-github-manager.BundlesViewToolbar"
+      ],
+      "references": [
+        {
+          "name": "tool",
+          "providing": "ct.tools.Tool",
+          "cardinality": "0..n",
+          "filter": "(toolRole=githubbundlesview)"
+        }
+      ]
+    },
+//    {
+//      "name": "GridColumnsExtender",
+//      "provides": "mapapps-github-manager.GridColumnsExtender"
+      //          "properties": {
+      //            "jsRegistryTarget": "@@applicationURL.noscheme@@/resources/jsregistry"
+      //          }
+//    },
+    {
+      "name": "GithubBundlesView",
+      "impl": "dataview/DataView",
+      "provides": [
+        "dijit.Widget",
+        "mapapps-github-manager.GithubBundlesView"
+      ],
+      "propertiesConstructor": true,
+      "properties": {
+        "_i18nPath": "dataViewCommon",
+        "widgetRole": "githubBundlesView",
+        "showFilter": true,
+        "showPager": true,
+        "itemsPerPage": 50,
+        "filterDuringKeyUp": true,
+        "class": "ctBundlesDataView",
+        "DGRID": {
+          "noDataMessage": "${bundlesView.noDataMessage}",
+          "checkboxSelection": false,
+          "columns": [
+            {
+              "matches": {
+                "name": "name"
+              },
+              "title": "${bundlesView.name}",
+              "width": 300
+            },
+            {
+              "matches": {
+                "name": "description"
+              },
+              "title": "${bundlesView.desc}"
+            },
+            {
+              "matches": {
+                "name": "html_url"
+              },
+              "title": "${bundlesView.url}"
+            },
+            {
+              "matches": {
+                "name": "stargazers_count"
+              },
+              "title": "${bundlesView.stars}",
+              "width": 100
+            }
+          ]
+        },
+        "ICON": {
+          "noDataMessage": "${bundlesView.noDataMessage}",
+          "resourceRelativeImages": true
+        }
+      },
+      "references": [
+        {
+          "name": "toolbar",
+          "providing": "mapapps-github-manager.BundlesViewToolbar",
+          "cardinality": "0..1"
+        }
+//        {
+//          "name": "gridColumnsExtender",
+//          "providing": "mapapps-github-manager.GridColumnsExtender"
+//        }
+      ]
+    },
+    {
+      "name": "BundlesViewController",
+      "impl": "dataview/DataViewController",
+      "provides": [
+        "ct.framework.api.EventHandler",
+        "mapapps-github-manager.BundlesViewController"
+      ],
+      "properties": {
+        "Event-Topics": [
+          {
+            "topic": [
+              "mapapps-github-manager/BUNDLES_UPLOADED"
+            ],
+            "method": "refreshView"
+          }
+        ],
+        "selectionTopic": "mapapps-github-manager/BUNDLE_SHOWDETAILS"
+      },
+      "immediate": true,
+      "references": [
+        {
+          "name": "store",
+          "providing": "mapapps-github-manager.BundleStore"
+        },
+        {
+          "name": "dataView",
+          "providing": "mapapps-github-manager.GithubBundlesView"
+        },
+        {
+          "name": "logger",
+          "providing": "ct.framework.api.LogService"
+        },
+        {
+          "name": "eventService",
+          "providing": "ct.framework.api.EventService"
+        },
+        {
+          "name": "windowManager",
+          "providing": "ct.framework.api.WindowManager"
+        }
+      ]
+    },
+    {
+      "name": "BundleDetailsController",
+      "provides": [
+        "ct.framework.api.EventHandler",
+        "mapapps-github-manager.BundleDetailsController"
+      ],
+      "properties": {
+        "uploadTarget": "@@applicationURL.noscheme@@/resources/jsregistry/upload",
+        "Event-Topics": [
+          {
+            "topic": [
+              "mapapps-github-manager/BUNDLE_SHOWDETAILS"
+            ],
+            "method": "showDetails"
+          }
+        ]
+      },
+      "references": [
+        {
+          "name": "store",
+          "providing": "mapapps-github-manager.BundleStore"
+        },
+        {
+          "name": "dataformService",
+          "providing": "dataform.DataFormService"
+        },
+        {
+          "name": "windowManager",
+          "providing": "ct.framework.api.WindowManager"
+        },
+        {
+          "name": "logger",
+          "providing": "ct.framework.api.LogService"
+        },
+        {
+          "name": "eventService",
+          "providing": "ct.framework.api.EventService"
+        }
+      ]
+    }
+  ]
+}
