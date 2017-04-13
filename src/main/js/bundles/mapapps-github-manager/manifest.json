@@ -52,7 +52,7 @@
         "priority": 6,
         "toolRole": "toolset",
         "togglable": true,
-        "iconClass": "icon-github",
+        "iconClass": "icon-download",
         "rules": {
           "roles": [
             "maAdmin"
