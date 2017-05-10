@@ -58,7 +58,7 @@ define([
             };
             this.target = this.target.lastIndexOf("/") === (this.target.length-1) ? this.target.substring(0,this.target.lastIndexOf("/")) : this.target;
 
-            var request = apprt_request(this.target + "?q=user%3Aconterra+topic%3Amapapps",
+            var request = apprt_request(this.target + this.searchString,
                 {useProxy: false});
 
             ct_when(request, function(data){

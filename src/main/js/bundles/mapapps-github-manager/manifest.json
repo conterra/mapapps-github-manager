@@ -35,6 +35,7 @@
           "mapapps-github-manager"
         ],
         "target": "https://api.github.com/search/repositories",
+        "searchString": "?q=user%3Aconterra+topic%3Amapapps",
         "itemProperty": "data"
       }
     },
