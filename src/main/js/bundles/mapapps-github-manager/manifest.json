@@ -38,8 +38,7 @@
         "searchString": "?q=user%3Aconterra+topic%3Amapapps",
         "itemProperty": "data"
       }
-    },
-    {
+    }, {
       "name": "BundleListTool",
       "impl": "ct/tools/Tool",
       "provides": [
@@ -61,8 +60,7 @@
           "ruleSuccessProperty": "visibility"
         }
       }
-    },
-    {
+    }, {
       "name": "BundleViewToolbar",
       "impl": "ct/tools/ToolContainer",
       "provides": [
@@ -76,15 +74,7 @@
           "filter": "(toolRole=githubbundlesview)"
         }
       ]
-    },
-//    {
-//      "name": "GridColumnsExtender",
-//      "provides": "mapapps-github-manager.GridColumnsExtender"
-      //          "properties": {
-      //            "jsRegistryTarget": "@@applicationURL.noscheme@@/resources/jsregistry"
-      //          }
-//    },
-    {
+    }, {
       "name": "GithubBundlesView",
       "impl": "dataview/DataView",
       "provides": [
@@ -143,10 +133,6 @@
           "providing": "mapapps-github-manager.BundlesViewToolbar",
           "cardinality": "0..1"
         }
-//        {
-//          "name": "gridColumnsExtender",
-//          "providing": "mapapps-github-manager.GridColumnsExtender"
-//        }
       ]
     },
     {
@@ -172,20 +158,16 @@
         {
           "name": "store",
           "providing": "mapapps-github-manager.BundleStore"
-        },
-        {
+        }, {
           "name": "dataView",
           "providing": "mapapps-github-manager.GithubBundlesView"
-        },
-        {
+        }, {
           "name": "logger",
           "providing": "ct.framework.api.LogService"
-        },
-        {
+        }, {
           "name": "eventService",
           "providing": "ct.framework.api.EventService"
-        },
-        {
+        }, {
           "name": "windowManager",
           "providing": "ct.framework.api.WindowManager"
         }
@@ -212,20 +194,16 @@
         {
           "name": "store",
           "providing": "mapapps-github-manager.BundleStore"
-        },
-        {
+        }, {
           "name": "dataformService",
           "providing": "dataform.DataFormService"
-        },
-        {
+        }, {
           "name": "windowManager",
           "providing": "ct.framework.api.WindowManager"
-        },
-        {
+        }, {
           "name": "logger",
           "providing": "ct.framework.api.LogService"
-        },
-        {
+        }, {
           "name": "eventService",
           "providing": "ct.framework.api.EventService"
         }
