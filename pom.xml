@@ -398,24 +398,24 @@
                 <groupId>de.conterra.mapapps</groupId>
                 <artifactId>mapapps-maven-plugin</artifactId>
                 <executions>
-                    <execution>
-                        <id>build-app-template</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>deployAppTemplate</goal>
-                        </goals>
-                        <configuration>
-                            <templateFile>${project.build.directory}/${project.artifactId}-sample-app.zip</templateFile>
-                            <templateResources>
-                                <templateResource>
-                                    <directory>${js.build.outputPath}/apps/sample</directory>
-                                    <includes>
-                                        <include>**/*</include>
-                                    </includes>
-                                </templateResource>
-                            </templateResources>
-                        </configuration>
-                    </execution>
+                    <!--<execution>-->
+                        <!--<id>build-app-template</id>-->
+                        <!--<phase>prepare-package</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>deployAppTemplate</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<templateFile>${project.build.directory}/${project.artifactId}-sample-app.zip</templateFile>-->
+                            <!--<templateResources>-->
+                                <!--<templateResource>-->
+                                    <!--<directory>${js.build.outputPath}/apps/sample</directory>-->
+                                    <!--<includes>-->
+                                        <!--<include>**/*</include>-->
+                                    <!--</includes>-->
+                                <!--</templateResource>-->
+                            <!--</templateResources>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
                 </executions>
                 <configuration>
                     <skipDeploy>true</skipDeploy>
@@ -678,7 +678,6 @@
                                             <directory>${project.build.directory}</directory>
                                             <includes>
                                                 <include>${project.artifactId}-bundle.zip</include>
-                                                <include>${project.artifactId}-sample-app.zip</include>
                                                 <!--<include>${project.artifactId}*.tar.gz</include>-->
                                                 <include>${project.artifactId}*.zip</include>
                                             </includes>
