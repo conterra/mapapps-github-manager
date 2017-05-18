@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 con terra GmbH (info@conterra.de)
+ * Copyright (C) 2017 con terra GmbH (info@conterra.de)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,54 +39,48 @@ define([
                     "t": 0,
                     "l": 5
                 }
-            },
-                {
-                    "type": "label",
-                    "value": "${version}",
-                    "size": {
-                        "t": 45,
-                        "l": 5
-                    }
-                },
-                {
-                    "type": "selectbox",
-                    "field": "tagSelection",
-                    "searchable": false,
-                    "store": "tagsStore",
-                    "required": true,
-                    "size": {
-                        "t": 40,
-                        "l": 60
-                    }
-                }, {
-                    "type": "button",
-                    "value": "${installButton}",
-                    "size": {
-                        "t": 40,
-                        "r": 5
-                    }
+            }, {
+                "type": "label",
+                "value": "${version}",
+                "size": {
+                    "t": 45,
+                    "l": 5
                 }
-            ]
+            }, {
+                "type": "selectbox",
+                "field": "tagSelection",
+                "searchable": false,
+                "store": "tagsStore",
+                "required": true,
+                "size": {
+                    "t": 40,
+                    "l": 60
+                }
+            }, {
+                "type": "button",
+                "value": "${installButton}",
+                "size": {
+                    "t": 40,
+                    "r": 5
+                }
+            }]
         },
         /**
          * @constructs
          */
         constructor: function () {
-        }
-        ,
+        },
         activate: function (ctx) {
             var i18n = this.i18n = this._i18n.get().bundleDetailsView;
             this.effectiveWidgetDefinition = this._substituteWidgetDefinition(this.widgetDefinition, i18n);
             this.bCtx = ctx.getBundleContext();
 
-        }
-        ,
+        },
         deactivate: function () {
             this.effectiveWidgetDefinition = null;
             this.i18n = null;
             this.disconnect();
-        }
-        ,
+        },
         showDetails: function (params) {
 
             var i18n = this.i18n;
@@ -101,10 +95,16 @@ define([
             }
             else {
 
-                //todo handle case if no downloads are available
+                var w = this.detailWindow = this.windowManager.createModalWindow({
+                    title: i18n.noReleasesTitle,
+                    draggable: true,
+                    dndDraggable: false,
+                    content: i18n.noReleasesYet,
+                    closable: true
+                });
+                w.show();
             }
-        }
-        ,
+        },
         _createWindow: function (item, i18n) {
 
             var tagsUrl = "https://api.github.com/repos/conterra/" + item.name + "/releases";
@@ -162,10 +162,6 @@ define([
             var binding = dfService.createBinding("object", {
                 data: item
             });
-            // binding.watch("*", function(name, oldVal, newVal) {
-            //     debugger
-            //     // called when a property is changed in the object
-            // });
             form.set("dataBinding", binding);
 
             return form;
@@ -186,7 +182,7 @@ define([
             if (tag) {
 
                 var url = "https://github.com/conterra/" + item.name + "/releases/download/" + tag + "/" + item.name + "-bundle.zip";
-                this.buttonWidget.set("label",this.i18n.downloading);
+                this.buttonWidget.set("label", this.i18n.downloading);
 
 
                 var downloadRequest = this._downloadArchive(url);
@@ -204,7 +200,7 @@ define([
         ,
         _uploadBundle: function (blob, appId) {
 
-            this.buttonWidget.set("label",this.i18n.uploading);
+            this.buttonWidget.set("label", this.i18n.uploading);
             var fileName = this.currentItem.name + ".zip";
             var url = this._properties.uploadTarget;
             var formData = new FormData();
@@ -218,7 +214,7 @@ define([
 
                 this.buttonWidget.set("disabled", false);
                 this.buttonWidget.set("iconClass", "icon-sign-success");
-                this.buttonWidget.set("class","input-success");
+                this.buttonWidget.set("class", "input-success");
                 this.buttonWidget.set("label", this.i18n.integrationSuccess);
                 setTimeout(d_lang.hitch(this, function () {
                     this.detailWindow.close()

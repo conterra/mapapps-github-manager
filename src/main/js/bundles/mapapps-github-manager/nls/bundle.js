@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 con terra GmbH (info@conterra.de)
+ * Copyright (C) 2017 con terra GmbH (info@conterra.de)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,24 +17,10 @@ define({
     root: {
         bundleName: "GitHub Bundle Management",
         bundleDescription: "Integrate GitHub bundles into your map.apps installation",
-        commonDelete: {
-            saveQuery: "Do you really want to delete {number} item(s)?",
-            error: "Deletion of items '{items}' failed!",
-            partialSuccess: "Some items could not be deleted!",
-            errorFinish: "No item could be deleted!",
-            success: "Items successfully deleted!"
-        },
+
         bundleListTool: {
             title: "GitHub",
             desc: "List of GitHub Bundles"
-        },
-        removeSelectedBundlesTool: {
-            title: "Delete",
-            desc: "Delete Bundle(s)"
-        },
-        createBundleTool: {
-            title: "Upload",
-            desc: "Upload Bundles"
         },
         dataViewCommon: {
             filter: {
@@ -73,6 +59,7 @@ define({
             windowTitle: "Bundle '{name}'",
             createWindowTitle: "Bundle Upload",
             noReleasesYet: "Sorry, this bundle doesn't have any releases yet.",
+            noReleasesTitle: "No releases found",
             notFound: "Sorry, we could not locate this bundle on GitHub.",
             integrationFailed: "Sorry, the bundle could not be integrated into map.apps.",
             downloading: "Fetching bundle",

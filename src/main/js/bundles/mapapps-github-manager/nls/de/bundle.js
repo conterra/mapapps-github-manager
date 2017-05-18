@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 con terra GmbH (info@conterra.de)
+ * Copyright (C) 2017 con terra GmbH (info@conterra.de)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,24 +16,9 @@
 define({
     bundleName: "GitHub Bundle Installer",
     bundleDescription: "Bietet eine Oberfl\u00E4che zur GitHub-Bundle-Installation",
-    commonDelete: {
-        saveQuery: "Wollen Sie wirklich {number} Element(e) l\u00F6schen?",
-        error: "Das L\u00F6schen der Elemente '{items}' ist fehlgeschlagen!",
-        partialSuccess: "Einige Elemente konnten nicht gel\u00F6scht werden!",
-        errorFinish: "Kein Element konnte gel\u00F6scht werden!",
-        success: "Der L\u00F6schvorgang wurde erfolgreich beendet!"
-    },
     bundleListTool: {
         title: "GitHub",
         desc: "Liste von GitHub Bundles"
-    },
-    removeSelectedBundlesTool: {
-        title: "L\u00F6schen",
-        desc: "L\u00F6sche Bundle"
-    },
-    createBundleTool: {
-        title: "Hochladen",
-        desc: "Bundles hochladen"
     },
     dataViewCommon: {
         filter: {
@@ -71,6 +56,7 @@ define({
         windowTitle: "Bundle '{name}'",
         createWindowTitle: "Bundle hochladen",
         noReleasesYet: "Dieses Bundle hat leider noch keine Releases.",
+        noReleasesTitle: "Kein Release gefunden",
         notFound: "Das Bundle konnte leider nicht von GitHub heruntergeladen werden.",
         integrationFailed: "Ein Fehler trat auf, das Bundle konnte leider nicht in map.apps integriert werden.",
         integrationSuccess: "Bundle installiert.",
