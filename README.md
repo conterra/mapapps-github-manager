@@ -1,24 +1,17 @@
 # GitHub Manager
 
-Sample App
-------------------
 
+This project is intended to be ingetragted as a bundle in the destination installation of your map.apps manager.
 
 Installation Guide
 ------------------
 
+You will have to add a released bundle.jar/zip as a bundle in your map.apps manager. 
+Furthermore, you have to add the following lines to your  `application.properties` or `custom.application.properties`, or `build.properties`:
 
-Development Guide
-------------------
-### Define the mapapps remote base
-Before you can run the project you have to define the mapapps.remote.base property in the pom.xml-file:
-`<mapapps.remote.base>http://%YOURSERVER%/ct-mapapps-webapp-%VERSION%</mapapps.remote.base>`
 
-##### Other methods to to define the mapapps.remote.base property.
-1. Goal parameters
-`mvn install -Dmapapps.remote.base=http://%YOURSERVER%/ct-mapapps-webapp-%VERSION%`
+`proxy.allowedServerUrls = https://github.com,followRedirects:true`
 
-2. Build properties
-Change the mapapps.remote.base in the build.properties file and run:
-`mvn install -Denv=dev -Dlocal.configfile=%ABSOLUTEPATHTOPROJECTROOT%/build.properties`
+`manager.config.viewbundles=appmanagement,reportmanagement,bundlemanagement,bundleupdatechecker,mapapps-github-manager`
 
+Restart your map.apps instance. You should now see a new tab in the manager view.
