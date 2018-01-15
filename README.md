@@ -1,7 +1,7 @@
 # GitHub Manager
 
 
-This project is intended to be ingetragted as a bundle in the destination installation of your map.apps manager.
+This project is intended to be integrated as a bundle in the destination installation of your map.apps manager.
 
 Installation Guide
 ------------------
@@ -15,3 +15,8 @@ Furthermore, you have to add the following lines to your  `application.propertie
 `manager.config.viewbundles=appmanagement,reportmanagement,bundlemanagement,bundleupdatechecker,mapapps-github-manager`
 
 Restart your map.apps instance. You should now see a new tab in the manager view.
+
+Attention
+---------
+
+The included sample app is just for ui design. Functional tests can only be performed in full installed map.apps manager (role=maAdmin).
