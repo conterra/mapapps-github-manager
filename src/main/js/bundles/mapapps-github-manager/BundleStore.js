@@ -58,7 +58,9 @@ define([
             };
             this.target = this.target.lastIndexOf("/") === (this.target.length - 1) ? this.target.substring(0, this.target.lastIndexOf("/")) : this.target;
 
-            var request = apprt_request(this.target + this.searchString,
+            var url = this.target + this.searchString + "&per_page=100";
+            
+            var request = apprt_request(url,
                 {useProxy: false});
 
             ct_when(request, function (data) {
