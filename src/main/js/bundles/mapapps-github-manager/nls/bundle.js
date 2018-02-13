@@ -19,8 +19,8 @@ define({
         bundleDescription: "Integrate GitHub bundles into your map.apps installation",
 
         bundleListTool: {
-            title: "GitHub",
-            desc: "List of GitHub Bundles"
+            title: "Developer Network Bundles",
+            desc: "List of Developer Network Bundles"
         },
         dataViewCommon: {
             filter: {
@@ -76,7 +76,7 @@ define({
             modifiedBy: "Modified By:",
             productName: "Product Name:",
             id: "ID:",
-            installButton: "Install Bundle",
+            installButton: "Install",
             instructions: "Please choose the desired bundle version and press 'Install'"
         }
     },

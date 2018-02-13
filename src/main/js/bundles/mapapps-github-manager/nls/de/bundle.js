@@ -17,13 +17,13 @@ define({
     bundleName: "GitHub Bundle Installer",
     bundleDescription: "Bietet eine Oberfl\u00E4che zur GitHub-Bundle-Installation",
     bundleListTool: {
-        title: "GitHub",
-        desc: "Liste von GitHub Bundles"
+        title: "Developer Network Bundles",
+        desc: "Liste von Developer Network Bundles"
     },
     dataViewCommon: {
         filter: {
-            textBoxPlaceHolder: "",
-            menuDefaultLabel: "Alle"
+            menuDefaultLabel: "Alle",
+            textBoxPlaceHolder: ""
         },
         pager: {
             backButtonTooltip: "Vorherige Seite",
@@ -73,7 +73,7 @@ define({
         modifiedAt: "Ge\u00E4ndert am",
         productName: "Produktname:",
         id: "ID:",
-        installButton: "Bundle installieren",
+        installButton: "Installieren",
         instructions: "Wählen Sie die gewünschte Version und klicken anschließend auf 'Installieren'"
     }
 });
