@@ -526,7 +526,7 @@
         <ct.jsrt-test.version>1.1.2</ct.jsrt-test.version>
 
         <!-- the default app, replaced in the *.html files to switch app names-->
-        <default.app.name>sample</default.app.name>
+        <default.app.name>manager</default.app.name>
         <client.config.initjs>$\{mapapps.remote.base\}/resources/jsregistry/root/apprt-boot/${mapapps4.version}/boot.js</client.config.initjs>
 
         <!-- don't do this in production configuration! This allows to go any http traffic over the /proxy endpoint -->
