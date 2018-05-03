@@ -57,9 +57,14 @@ define([
                 }]
             };
             this.target = this.target.lastIndexOf("/") === (this.target.length - 1) ? this.target.substring(0, this.target.lastIndexOf("/")) : this.target;
+            var url = this.target + "?q=user%3A" + this.user;
+            if(this.topic !== ""){
+                url = url + "+topic%3A" + this.topic;
+            }
 
-            var url = this.target + this.searchString + "&per_page=100";
-            
+            url = url + "&per_page=100";
+            console.log(url);
+
             var request = apprt_request(url,
                 {useProxy: false});
 

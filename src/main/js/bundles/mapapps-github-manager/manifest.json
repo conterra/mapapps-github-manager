@@ -35,10 +35,12 @@
           "mapapps-github-manager"
         ],
         "target": "https://api.github.com/search/repositories",
-        "searchString": "?q=user%3Aconterra+topic%3Amapapps",
+        "user": "conterra",
+        "topic": "mapapps",
         "itemProperty": "data"
       }
-    }, {
+    },
+    {
       "name": "BundleListTool",
       "impl": "ct/tools/Tool",
       "provides": [
@@ -60,7 +62,8 @@
           "ruleSuccessProperty": "visibility"
         }
       }
-    }, {
+    },
+    {
       "name": "BundleViewToolbar",
       "impl": "ct/tools/ToolContainer",
       "provides": [
@@ -74,7 +77,8 @@
           "filter": "(toolRole=githubbundlesview)"
         }
       ]
-    }, {
+    },
+    {
       "name": "GithubBundlesView",
       "impl": "dataview/DataView",
       "provides": [
@@ -158,16 +162,20 @@
         {
           "name": "store",
           "providing": "mapapps-github-manager.BundleStore"
-        }, {
+        },
+        {
           "name": "dataView",
           "providing": "mapapps-github-manager.GithubBundlesView"
-        }, {
+        },
+        {
           "name": "logger",
           "providing": "ct.framework.api.LogService"
-        }, {
+        },
+        {
           "name": "eventService",
           "providing": "ct.framework.api.EventService"
-        }, {
+        },
+        {
           "name": "windowManager",
           "providing": "ct.framework.api.WindowManager"
         }
@@ -194,16 +202,20 @@
         {
           "name": "store",
           "providing": "mapapps-github-manager.BundleStore"
-        }, {
+        },
+        {
           "name": "dataformService",
           "providing": "dataform.DataFormService"
-        }, {
+        },
+        {
           "name": "windowManager",
           "providing": "ct.framework.api.WindowManager"
-        }, {
+        },
+        {
           "name": "logger",
           "providing": "ct.framework.api.LogService"
-        }, {
+        },
+        {
           "name": "eventService",
           "providing": "ct.framework.api.EventService"
         }
