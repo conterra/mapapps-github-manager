@@ -19,8 +19,7 @@ define({
         bundleDescription: "Integrate GitHub bundles into your map.apps installation",
 
         bundleListTool: {
-            title: "Developer Network Bundles",
-            desc: "List of Developer Network Bundles"
+            title: "Developer Network Bundles"
         },
         dataViewCommon: {
             filter: {
