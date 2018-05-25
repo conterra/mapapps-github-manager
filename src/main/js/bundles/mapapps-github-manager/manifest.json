@@ -50,7 +50,7 @@
       "properties": {
         "id": "appmanagement_githubBundleListTool",
         "title": "${bundleListTool.title}",
-        "tooltip": "${bundleListTool.desc}",
+        "tooltip": "",
         "priority": 6,
         "toolRole": "toolset",
         "togglable": true,
