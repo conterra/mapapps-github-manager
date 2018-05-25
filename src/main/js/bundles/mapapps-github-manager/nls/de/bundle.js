@@ -17,8 +17,7 @@ define({
     bundleName: "GitHub Bundle Installer",
     bundleDescription: "Bietet eine Oberfl\u00E4che zur GitHub-Bundle-Installation",
     bundleListTool: {
-        title: "Developer Network Bundles",
-        desc: "Liste von Developer Network Bundles"
+        title: "Developer Network Bundles"
     },
     dataViewCommon: {
         filter: {
