@@ -505,7 +505,7 @@
         <snapshotRepository>
             <id>ct-dist-snapshots-file</id>
             <name>repository for sdi.suite snapshots</name>
-            <url>${snapshot.deployment.url}</url>
+            <url>${snapsh4ot.deployment.url}</url>
         </snapshotRepository>
     </distributionManagement>
     <properties>
@@ -516,7 +516,7 @@
         <netbeans.hint.jdkPlatform>JDK_1.7</netbeans.hint.jdkPlatform>
 
         <!-- JS lib versions -->
-        <mapapps.version>4.3.1-SNAPSHOT</mapapps.version>
+        <mapapps.version>4.3.0</mapapps.version>
 
         <!-- Defines runtime version for the sample project. Defaults to map.apps 3.x -->
         <!-- To develope mapapps 4.x apps, change this property -->
