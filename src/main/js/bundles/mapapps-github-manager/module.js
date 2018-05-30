@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 con terra GmbH (info@conterra.de)
+ * Copyright (C) 2018 con terra GmbH (info@conterra.de)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-define([
-    ".",
-    "./BundleStore",
-    "./BundleDetailsController",
-    "dataview/DataView",
-    "dataview/DataViewController",
-    "ct/tools/Tool",
-    "ct/tools/ToolContainer"
-    ], {});
+import ".";
+import "./BundleStore";
+import "./BundleDetailsController";
+import "./BundleWidgetFactory";
+import "dataview/DataView";
+import "dataview/DataViewController";
+import "ct/tools/Tool";
+import "ct/tools/ToolContainer";

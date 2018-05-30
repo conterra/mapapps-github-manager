@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 con terra GmbH (info@conterra.de)
+ * Copyright (C) 2018 con terra GmbH (info@conterra.de)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,13 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-define({
+module.exports = {
     root: {
         bundleName: "GitHub Bundle Management",
         bundleDescription: "Integrate GitHub bundles into your map.apps installation",
 
         bundleListTool: {
             title: "Developer Network Bundles"
+        },
+        highlightBundles: "Selected Highlights",
+        allBundles: "All Bundles",
+        highlightBundleView: {
+            install: "Install",
+            openInGithub: "Open in GitHub",
+            demo: "Demo"
         },
         dataViewCommon: {
             filter: {
@@ -46,6 +53,7 @@ define({
             noDataMessage: "No bundles available...",
             name: "Name",
             version: "Version",
+            demo: "Demo",
             url: "GitHub Homepage",
             title: "Title",
             desc: "Description",
@@ -80,4 +88,4 @@ define({
         }
     },
     "de": true
-});
+};

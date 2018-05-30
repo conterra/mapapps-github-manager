@@ -1,0 +1,35 @@
+.ctAppRoot .bundleWidget .bundleTitle {
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.ctAppRoot .bundleWidget .topContentPane {
+    height: 330px;
+}
+
+.ctAppRoot .bundleWidget .topContentPane .carousel {
+    height: 300px;
+    box-shadow: none;
+}
+
+.ctAppRoot .bundleWidget .topContentPane .carousel .jumbotron .bundleInfoContainer .card {
+    background-color: rgba(97, 97, 101, 0.5);
+}
+.ctAppRoot .bundleWidget .topContentPane .carousel .jumbotron .bundleInfoContainer .card .card__media {
+    cursor: pointer;
+
+}
+
+.ctAppRoot .bundleWidget .topContentPane .carousel .carousel__controls {
+    background: transparent;
+    height: 30px;
+}
+
+.ctAppRoot .bundleWidget .topContentPane .carousel .carousel__left,
+.ctAppRoot .bundleWidget .topContentPane .carousel .carousel__right {
+    top: 45%;
+}
+
+.ctAppRoot .bundleWidget .topContentPane .carousel .jumbotron .chips {
+    margin-top: 10px;
+}

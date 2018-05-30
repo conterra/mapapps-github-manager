@@ -1,6 +1,5 @@
 # GitHub Manager
 
-
 This project is intended to be integrated as a bundle in the destination installation of your map.apps manager.
 
 #### Configurable Components of dn_welcome: 

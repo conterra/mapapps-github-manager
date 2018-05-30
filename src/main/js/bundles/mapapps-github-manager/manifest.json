@@ -1,6 +1,6 @@
 {
   "name": "mapapps-github-manager",
-  "version": "1.0.4-SNAPSHOT",
+  "version": "1.1.0-SNAPSHOT",
   "title": "${bundleName}",
   "description": "${bundleDescription}",
   "vendor": "con terra GmbH",
@@ -10,18 +10,59 @@
   ],
   "dependencies": {
     "dataform": "^4.0.0",
-    "dataview": "^4.0.0"
+    "dataview": "^4.0.0",
+    "apprt-vue": "^4.2.0",
+    "apprt-binding": "^4.2.0",
+    "apprt-vuetify": "^4.2.0"
   },
+  "CSS-Themes-Extension": [
+    {
+      "name": "*",
+      "files": [
+        "./css/styles.css"
+      ]
+    }
+  ],
   "layout-widgets": [
     {
-      "widgetRole": "githubBundlesView",
+      "widgetRole": "githubBundlesWidget",
       "attachTo": "manager-tabbed-window",
       "window": {
         "dockTool": "appmanagement_githubBundleListTool"
       }
     }
+    /*,
+        {
+          "widgetRole": "githubBundlesDataView",
+          "attachTo": "manager-tabbed-window",
+          "window": {
+            "dockTool": "appmanagement_githubBundleListTool"
+          }
+        }*/
   ],
   "components": [
+    {
+      "name": "BundleWidgetFactory",
+      "provides": "dijit.Widget",
+      "instanceFactory": true,
+      "properties": {
+        "widgetRole": "githubBundlesWidget"
+      },
+      "references": [
+        {
+          "name": "store",
+          "providing": "mapapps-github-manager.BundleStore"
+        },
+        {
+          "name": "_githubBundlesDataView",
+          "providing": "mapapps-github-manager.GithubBundlesDataView"
+        },
+        {
+          "name": "_bundleDetailsController",
+          "providing": "mapapps-github-manager.BundleDetailsController"
+        }
+      ]
+    },
     {
       "name": "BundleStore",
       "provides": [
@@ -37,6 +78,7 @@
         "target": "https://api.github.com/search/repositories",
         "user": "conterra",
         "topic": "mapapps",
+        "highlightTopic": "highlight",
         "itemProperty": "data"
       }
     },
@@ -79,16 +121,16 @@
       ]
     },
     {
-      "name": "GithubBundlesView",
+      "name": "GithubBundlesDataView",
       "impl": "dataview/DataView",
       "provides": [
         "dijit.Widget",
-        "mapapps-github-manager.GithubBundlesView"
+        "mapapps-github-manager.GithubBundlesDataView"
       ],
       "propertiesConstructor": true,
       "properties": {
         "_i18nPath": "dataViewCommon",
-        "widgetRole": "githubBundlesView",
+        //"widgetRole": "githubBundlesDataView",
         "showFilter": true,
         "showPager": true,
         "itemsPerPage": 50,
@@ -102,14 +144,19 @@
               "matches": {
                 "name": "name"
               },
-              "title": "${bundlesView.name}",
-              "width": 300
+              "title": "${bundlesView.name}"
             },
             {
               "matches": {
                 "name": "description"
               },
               "title": "${bundlesView.desc}"
+            },
+            {
+              "matches": {
+                "name": "homepage"
+              },
+              "title": "${bundlesView.demo}"
             },
             {
               "matches": {
@@ -122,7 +169,7 @@
                 "name": "stargazers_count"
               },
               "title": "${bundlesView.stars}",
-              "width": 100
+              "width": 50
             }
           ]
         },
@@ -140,11 +187,11 @@
       ]
     },
     {
-      "name": "BundlesViewController",
+      "name": "BundlesDataViewController",
       "impl": "dataview/DataViewController",
       "provides": [
         "ct.framework.api.EventHandler",
-        "mapapps-github-manager.BundlesViewController"
+        "mapapps-github-manager.BundlesDataViewController"
       ],
       "properties": {
         "Event-Topics": [
@@ -165,7 +212,7 @@
         },
         {
           "name": "dataView",
-          "providing": "mapapps-github-manager.GithubBundlesView"
+          "providing": "mapapps-github-manager.GithubBundlesDataView"
         },
         {
           "name": "logger",

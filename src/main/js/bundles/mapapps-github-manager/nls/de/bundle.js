@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 con terra GmbH (info@conterra.de)
+ * Copyright (C) 2018 con terra GmbH (info@conterra.de)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,11 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-define({
+module.exports = {
     bundleName: "GitHub Bundle Installer",
     bundleDescription: "Bietet eine Oberfl\u00E4che zur GitHub-Bundle-Installation",
     bundleListTool: {
         title: "Developer Network Bundles"
+    },
+    highlightBundles: "Ausgew\u00E4hlte Highlights",
+    allBundles: "Alle Bundles",
+    highlightBundleView: {
+        install: "Installieren",
+        openInGithub: "In GitHub \u00f6ffnen",
+        demo: "Demo"
     },
     dataViewCommon: {
         filter: {
@@ -45,6 +52,7 @@ define({
         version: "Version",
         title: "Titel",
         desc: "Beschreibung",
+        demo: "Demo",
         url: "GitHub Homepage",
         stars: "Stars",
         modifiedBy: "Ge\u00E4ndert durch",
@@ -75,4 +83,4 @@ define({
         installButton: "Installieren",
         instructions: "Wählen Sie die gewünschte Version und klicken anschließend auf 'Installieren'"
     }
-});
+};

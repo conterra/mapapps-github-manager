@@ -8,6 +8,7 @@
       "system",
       "splashscreen",
       "notifier",
+      "console",
       "templatelayout",
       "toolset",
       "managementlayout",
@@ -20,12 +21,6 @@
     ]
   },
   "bundles": {
-    "templates": {
-      "TemplateModel": {
-        "_selectedTemplate": "",
-        "_templates": []
-      }
-    },
     "toolset": {
       "ToolsetManager": {
         "toolsets": [
