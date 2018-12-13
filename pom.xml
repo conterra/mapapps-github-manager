@@ -20,7 +20,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.conterra.devnet</groupId>
     <artifactId>mapapps-github-manager</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <!-- DISABLE repositories and pluginRepositories if inside the con terra! -->
     <repositories>
@@ -514,7 +514,7 @@
         <developerConnection>scm:git:https://github.com/conterra/mapapps-github-manager.git
         </developerConnection>
         <url>https://github.com/conterra/mapapps-github-manager</url>
-        <tag>1.2.0</tag>
+        <tag>HEAD</tag>
     </scm>
     <distributionManagement>
         <repository>
