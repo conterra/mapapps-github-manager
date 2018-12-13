@@ -57,6 +57,7 @@ module.exports = {
             url: "GitHub Homepage",
             title: "Title",
             desc: "Description",
+            topics: "map.apps Version",
             stars: "Stars",
             modifiedBy: "Modified By",
             modifiedAt: "Modified At",
@@ -85,6 +86,12 @@ module.exports = {
             id: "ID:",
             installButton: "Install",
             instructions: "Please choose the desired bundle version and press 'Install'"
+        },
+        filter:{
+            four: "Line 4",
+            three: "Line 3",
+            all: "All"
+
         }
     },
     "de": true

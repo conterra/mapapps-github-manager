@@ -32,6 +32,21 @@ const BundleStore = declare([ComplexMemory], {
             return star + " " + value;
         };
 
+        if (TypeFormat["version"]) {
+            return;
+        }
+        // register new formatter at ct/util/TypeFormatter class
+        TypeFormat["version"] = function (value) {
+            let version = [];
+            if (value.includes('4x')) {
+                version.push('4x');
+            }
+            if (value.includes('3x')) {
+                version.push('3x');
+            }
+            return version;
+        };
+
         this.metadata = {
             title: "Bundle Service",
             displayField: "name",
@@ -66,6 +81,19 @@ const BundleStore = declare([ComplexMemory], {
                     "type": "datetime"
                 },
                 {
+                    "name": "fourXsupport",
+                    "type": "boolean"
+                },
+                {
+                    "name": "threeXsupport",
+                    "type": "boolean"
+                },
+                {
+                    "name": "topics",
+                    "type": "string",
+                    "subtype": "version"
+                },
+                {
                     "name": "stargazers_count",
                     "type": "string",
                     "subtype": "stars"
@@ -79,7 +107,6 @@ const BundleStore = declare([ComplexMemory], {
         }
 
         url = url + "&per_page=100";
-        console.log(url);
 
         let request = apprt_request(url,
             {
@@ -90,6 +117,14 @@ const BundleStore = declare([ComplexMemory], {
             });
 
         ct_when(request, function (data) {
+            data.items.forEach(item =>{
+                if (item.topics.includes('4x')) {
+                    item.fourXsupport=true;
+                }
+                if (item.topics.includes('3x')) {
+                    item.threeXsupport=true;
+                }
+            });
             this.setData(data);
         }, this.handleError, this);
     },

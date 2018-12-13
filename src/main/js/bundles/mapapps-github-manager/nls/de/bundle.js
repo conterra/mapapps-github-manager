@@ -52,6 +52,7 @@ module.exports = {
         version: "Version",
         title: "Titel",
         desc: "Beschreibung",
+        topics: "map.apps Version",
         demo: "Demo",
         url: "GitHub Homepage",
         stars: "Stars",
@@ -82,5 +83,12 @@ module.exports = {
         id: "ID:",
         installButton: "Installieren",
         instructions: "Wählen Sie die gewünschte Version und klicken anschließend auf 'Installieren'"
+    },
+    filter: {
+        four: "Linie 4",
+        three: "Linie 3",
+        all: "Alle"
+
     }
+
 };

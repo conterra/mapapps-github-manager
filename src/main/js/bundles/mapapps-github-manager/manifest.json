@@ -1,272 +1,365 @@
 {
-  "name": "mapapps-github-manager",
-  "version": "1.1.1-SNAPSHOT",
-  "title": "${bundleName}",
-  "description": "${bundleDescription}",
-  "vendor": "con terra GmbH",
-  "productName": "mapapps-github-manager",
-  "keywords": [
-    "manager"
-  ],
-  "dependencies": {
-    "dataform": "^4.0.0",
-    "dataview": "^4.0.0",
-    "apprt-vue": "^4.3.0",
-    "apprt-binding": "^4.3.0",
-    "apprt-vuetify": "^4.3.0"
-  },
-  "CSS-Themes-Extension": [
-    {
-      "name": "*",
-      "files": [
-        "./css/styles.css"
-      ]
-    }
-  ],
-  "layout-widgets": [
-    {
-      "widgetRole": "githubBundlesWidget",
-      "attachTo": "manager-tabbed-window",
-      "window": {
-        "dockTool": "appmanagement_githubBundleListTool"
-      }
-    }
-    /*,
+    "name": "mapapps-github-manager",
+    "version": "1.2.0-SNAPSHOT",
+    "title": "${bundleName}",
+    "description": "${bundleDescription}",
+    "vendor": "con terra GmbH",
+    "productName": "mapapps-github-manager",
+    "keywords": [
+        "manager"
+    ],
+    "dependencies": {
+        "dataform": "^4.0.0",
+        "dataview": "^4.0.0",
+        "apprt-vue": "^4.3.0",
+        "apprt-binding": "^4.3.0",
+        "apprt-vuetify": "^4.3.0"
+    },
+    "CSS-Themes-Extension": [
         {
-          "widgetRole": "githubBundlesDataView",
-          "attachTo": "manager-tabbed-window",
-          "window": {
-            "dockTool": "appmanagement_githubBundleListTool"
-          }
-        }*/
-  ],
-  "components": [
-    {
-      "name": "BundleWidgetFactory",
-      "provides": "dijit.Widget",
-      "instanceFactory": true,
-      "properties": {
-        "widgetRole": "githubBundlesWidget"
-      },
-      "references": [
-        {
-          "name": "store",
-          "providing": "mapapps-github-manager.BundleStore"
-        },
-        {
-          "name": "_githubBundlesDataView",
-          "providing": "mapapps-github-manager.GithubBundlesDataView"
-        },
-        {
-          "name": "_bundleDetailsController",
-          "providing": "mapapps-github-manager.BundleDetailsController"
+            "name": "*",
+            "files": [
+                "./css/styles.css"
+            ]
         }
-      ]
-    },
-    {
-      "name": "BundleStore",
-      "provides": [
-        "ct.api.Store",
-        "mapapps-github-manager.BundleStore"
-      ],
-      "propertiesConstructor": true,
-      "properties": {
-        "id": "githubBundlesStore",
-        "useIn": [
-          "mapapps-github-manager"
-        ],
-        "target": "https://api.github.com/search/repositories",
-        "user": "conterra",
-        "topic": "mapapps",
-        "highlightTopic": "highlight",
-        "itemProperty": "data"
-      }
-    },
-    {
-      "name": "BundleListTool",
-      "impl": "ct/tools/Tool",
-      "provides": [
-        "ct.tools.Tool"
-      ],
-      "propertiesConstructor": true,
-      "properties": {
-        "id": "appmanagement_githubBundleListTool",
-        "title": "${bundleListTool.title}",
-        "tooltip": "",
-        "priority": 6,
-        "toolRole": "toolset",
-        "togglable": true,
-        "iconClass": "icon-download",
-        "rules": {
-          "roles": [
-            "maAdmin"
-          ],
-          "ruleSuccessProperty": "visibility"
-        }
-      }
-    },
-    {
-      "name": "BundleViewToolbar",
-      "impl": "ct/tools/ToolContainer",
-      "provides": [
-        "mapapps-github-manager.BundlesViewToolbar"
-      ],
-      "references": [
+    ],
+    "layout-widgets": [
         {
-          "name": "tool",
-          "providing": "ct.tools.Tool",
-          "cardinality": "0..n",
-          "filter": "(toolRole=githubbundlesview)"
-        }
-      ]
-    },
-    {
-      "name": "GithubBundlesDataView",
-      "impl": "dataview/DataView",
-      "provides": [
-        "dijit.Widget",
-        "mapapps-github-manager.GithubBundlesDataView"
-      ],
-      "propertiesConstructor": true,
-      "properties": {
-        "_i18nPath": "dataViewCommon",
-        //"widgetRole": "githubBundlesDataView",
-        "showFilter": true,
-        "showPager": true,
-        "itemsPerPage": 50,
-        "filterDuringKeyUp": true,
-        "class": "ctBundlesDataView",
-        "DGRID": {
-          "noDataMessage": "${bundlesView.noDataMessage}",
-          "checkboxSelection": false,
-          "columns": [
-            {
-              "matches": {
-                "name": "name"
-              },
-              "title": "${bundlesView.name}"
-            },
-            {
-              "matches": {
-                "name": "description"
-              },
-              "title": "${bundlesView.desc}"
-            },
-            {
-              "matches": {
-                "name": "homepage"
-              },
-              "title": "${bundlesView.demo}"
-            },
-            {
-              "matches": {
-                "name": "html_url"
-              },
-              "title": "${bundlesView.url}"
-            },
-            {
-              "matches": {
-                "name": "stargazers_count"
-              },
-              "title": "${bundlesView.stars}",
-              "width": 50
+            "widgetRole": "githubBundlesWidget",
+            "attachTo": "manager-tabbed-window",
+            "window": {
+                "dockTool": "appmanagement_githubBundleListTool"
             }
-          ]
-        },
-        "ICON": {
-          "noDataMessage": "${bundlesView.noDataMessage}",
-          "resourceRelativeImages": true
         }
-      },
-      "references": [
+        /*,
+            {
+              "widgetRole": "githubBundlesDataView",
+              "attachTo": "manager-tabbed-window",
+              "window": {
+                "dockTool": "appmanagement_githubBundleListTool"
+              }
+            }*/
+    ],
+    "components": [
         {
-          "name": "toolbar",
-          "providing": "mapapps-github-manager.BundlesViewToolbar",
-          "cardinality": "0..1"
-        }
-      ]
-    },
-    {
-      "name": "BundlesDataViewController",
-      "impl": "dataview/DataViewController",
-      "provides": [
-        "ct.framework.api.EventHandler",
-        "mapapps-github-manager.BundlesDataViewController"
-      ],
-      "properties": {
-        "Event-Topics": [
-          {
-            "topic": [
-              "mapapps-github-manager/BUNDLES_UPLOADED"
+            "name": "BundleWidgetFactory",
+            "provides": "dijit.Widget",
+            "instanceFactory": true,
+            "properties": {
+                "widgetRole": "githubBundlesWidget"
+            },
+            "references": [
+                {
+                    "name": "store",
+                    "providing": "mapapps-github-manager.BundleStore"
+                },
+                {
+                    "name": "_githubBundlesDataView",
+                    "providing": "mapapps-github-manager.GithubBundlesDataView"
+                },
+                {
+                    "name": "_bundleDetailsController",
+                    "providing": "mapapps-github-manager.BundleDetailsController"
+                }
+            ]
+        },
+        {
+            "name": "BundleStore",
+            "provides": [
+                "ct.api.Store",
+                "mapapps-github-manager.BundleStore"
             ],
-            "method": "refreshView"
-          }
-        ],
-        "selectionTopic": "mapapps-github-manager/BUNDLE_SHOWDETAILS"
-      },
-      "immediate": true,
-      "references": [
-        {
-          "name": "store",
-          "providing": "mapapps-github-manager.BundleStore"
+            "propertiesConstructor": true,
+            "properties": {
+                "id": "githubBundlesStore",
+                "useIn": [
+                    "mapapps-github-manager"
+                ],
+                "target": "https://api.github.com/search/repositories",
+                "user": "conterra",
+                "topic": "mapapps",
+                "highlightTopic": "highlight",
+                "itemProperty": "data"
+            }
         },
         {
-          "name": "dataView",
-          "providing": "mapapps-github-manager.GithubBundlesDataView"
-        },
-        {
-          "name": "logger",
-          "providing": "ct.framework.api.LogService"
-        },
-        {
-          "name": "eventService",
-          "providing": "ct.framework.api.EventService"
-        },
-        {
-          "name": "windowManager",
-          "providing": "ct.framework.api.WindowManager"
-        }
-      ]
-    },
-    {
-      "name": "BundleDetailsController",
-      "provides": [
-        "ct.framework.api.EventHandler",
-        "mapapps-github-manager.BundleDetailsController"
-      ],
-      "properties": {
-        "uploadTarget": "@@applicationURL.noscheme@@/resources/jsregistry/upload",
-        "Event-Topics": [
-          {
-            "topic": [
-              "mapapps-github-manager/BUNDLE_SHOWDETAILS"
+            "name": "BundleListTool",
+            "impl": "ct/tools/Tool",
+            "provides": [
+                "ct.tools.Tool"
             ],
-            "method": "showDetails"
-          }
-        ]
-      },
-      "references": [
-        {
-          "name": "store",
-          "providing": "mapapps-github-manager.BundleStore"
+            "propertiesConstructor": true,
+            "properties": {
+                "id": "appmanagement_githubBundleListTool",
+                "title": "${bundleListTool.title}",
+                "tooltip": "",
+                "priority": 6,
+                "toolRole": "toolset",
+                "togglable": true,
+                "iconClass": "icon-download",
+                "rules": {
+                    "roles": [
+                        "maAdmin"
+                    ],
+                    "ruleSuccessProperty": "visibility"
+                }
+            }
         },
         {
-          "name": "dataformService",
-          "providing": "dataform.DataFormService"
+            "name": "BundleViewToolbar",
+            "impl": "ct/tools/ToolContainer",
+            "provides": [
+                "mapapps-github-manager.BundlesViewToolbar"
+            ],
+            "references": [
+                {
+                    "name": "tool",
+                    "providing": "ct.tools.Tool",
+                    "cardinality": "0..n",
+                    "filter": "(toolRole=githubbundlesview)"
+                }
+            ]
         },
         {
-          "name": "windowManager",
-          "providing": "ct.framework.api.WindowManager"
+            "name": "GithubBundlesDataView",
+            "impl": "dataview/DataView",
+            "provides": [
+                "dijit.Widget",
+                "mapapps-github-manager.GithubBundlesDataView"
+            ],
+            "propertiesConstructor": true,
+            "properties": {
+                "_i18nPath": "dataViewCommon",
+                "widgetRole": "githubBundlesDataView",
+                "showFilter": true,
+                "showPager": true,
+                "itemsPerPage": 50,
+                "filterDuringKeyUp": true,
+                "class": "ctBundlesDataView",
+                "DGRID": {
+                    "noDataMessage": "${bundlesView.noDataMessage}",
+                    "checkboxSelection": false,
+                    "columns": [
+                        {
+                            "matches": {
+                                "name": "name"
+                            },
+                            "title": "${bundlesView.name}"
+                        },
+                        {
+                            "matches": {
+                                "name": "description"
+                            },
+                            "title": "${bundlesView.desc}"
+                        },
+                        {
+                            "matches": {
+                                "name": "homepage"
+                            },
+                            "title": "${bundlesView.demo}"
+                        },
+                        {
+                            "matches": {
+                                "name": "html_url"
+                            },
+                            "title": "${bundlesView.url}"
+                        },
+                        {
+                            "matches": {
+                                "name": "topics"
+                            },
+                            "title": "${bundlesView.topics}"
+                        },
+                        {
+                            "matches": {
+                                "name": "stargazers_count"
+                            },
+                            "title": "${bundlesView.stars}",
+                            "width": 50
+                        }
+                    ]
+                },
+                "ICON": {
+                    "noDataMessage": "${bundlesView.noDataMessage}",
+                    "resourceRelativeImages": true
+                }
+            },
+            "references": [
+                {
+                    "name": "toolbar",
+                    "providing": "mapapps-github-manager.BundlesViewToolbar",
+                    "cardinality": "0..1"
+                }
+            ]
         },
         {
-          "name": "logger",
-          "providing": "ct.framework.api.LogService"
+            "name": "BundlesDataViewController",
+            "impl": "dataview/DataViewController",
+            "provides": [
+                "ct.framework.api.EventHandler",
+                "mapapps-github-manager.BundlesDataViewController"
+            ],
+            "properties": {
+                "Event-Topics": [
+                    {
+                        "topic": [
+                            "mapapps-github-manager/BUNDLES_UPLOADED"
+                        ],
+                        "method": "refreshView"
+                    }
+                ],
+                "selectionTopic": "mapapps-github-manager/BUNDLE_SHOWDETAILS"
+            },
+            "immediate": true,
+            "references": [
+                {
+                    "name": "store",
+                    "providing": "mapapps-github-manager.BundleStore"
+                },
+                {
+                    "name": "dataView",
+                    "providing": "mapapps-github-manager.GithubBundlesDataView"
+                },
+                {
+                    "name": "logger",
+                    "providing": "ct.framework.api.LogService"
+                },
+                {
+                    "name": "eventService",
+                    "providing": "ct.framework.api.EventService"
+                },
+                {
+                    "name": "windowManager",
+                    "providing": "ct.framework.api.WindowManager"
+                }
+            ]
         },
         {
-          "name": "eventService",
-          "providing": "ct.framework.api.EventService"
+            "name": "BundleDetailsController",
+            "provides": [
+                "ct.framework.api.EventHandler",
+                "mapapps-github-manager.BundleDetailsController"
+            ],
+            "properties": {
+                "uploadTarget": "@@applicationURL.noscheme@@/resources/jsregistry/upload",
+                "Event-Topics": [
+                    {
+                        "topic": [
+                            "mapapps-github-manager/BUNDLE_SHOWDETAILS"
+                        ],
+                        "method": "showDetails"
+                    }
+                ]
+            },
+            "references": [
+                {
+                    "name": "store",
+                    "providing": "mapapps-github-manager.BundleStore"
+                },
+                {
+                    "name": "dataformService",
+                    "providing": "dataform.DataFormService"
+                },
+                {
+                    "name": "windowManager",
+                    "providing": "ct.framework.api.WindowManager"
+                },
+                {
+                    "name": "logger",
+                    "providing": "ct.framework.api.LogService"
+                },
+                {
+                    "name": "eventService",
+                    "providing": "ct.framework.api.EventService"
+                }
+            ]
+        },
+        {
+            "name": "FilterHandler",
+            "provides": ["mapapps-github-manager.FilterHandler"],
+            "properties": {
+            },
+            "references": [
+                {
+                    "name": "_githubBundlesDataView",
+                    "providing": "mapapps-github-manager.GithubBundlesDataView"
+                }
+            ]
+        },
+        {
+            "name": "Filter4xTool",
+            "impl": "ct/tools/Tool",
+            "provides": ["ct.tools.Tool"],
+            "propertiesConstructor": true,
+            "properties": {
+                "toolRole": "githubbundlesview",
+                "id": "filter4x",
+                "iconClass": "icon-filter",
+                "toolClass": "ctTool--showLabel",
+                "title": "${filter.four}",
+                "togglable": false,
+                "clickHandler": "filter4x",
+                "rules": {
+                    "ruleSuccessProperty": "visibility",
+                    "multipleExecutionsAvailable": false
+                }
+            },
+            "references": [
+                {
+                    "name": "handlerScope",
+                    "providing": "mapapps-github-manager.FilterHandler"
+                }
+            ]
+        },
+        {
+            "name": "Filter3xTool",
+            "impl": "ct/tools/Tool",
+            "provides": ["ct.tools.Tool"],
+            "propertiesConstructor": true,
+            "properties": {
+                "toolRole": "githubbundlesview",
+                "id": "filter3x",
+                "togglable": false,
+                "iconClass": "icon-filter",
+                "toolClass": "ctTool--showLabel",
+                "title": "${filter.three}",
+                "clickHandler": "filter3x",
+                "rules": {
+                    "ruleSuccessProperty": "visibility",
+                    "multipleExecutionsAvailable": false
+                }
+            },
+            "references": [
+                {
+                    "name": "handlerScope",
+                    "providing": "mapapps-github-manager.FilterHandler"
+                }
+            ]
+        },
+        {
+            "name": "ClearFilterTool",
+            "impl": "ct/tools/Tool",
+            "provides": ["ct.tools.Tool"],
+            "propertiesConstructor": true,
+            "properties": {
+                "toolRole": "githubbundlesview",
+                "id": "clearFilter",
+                "iconClass": "icon-filter",
+                "toolClass": "ctTool--showLabel",
+                "title": "${filter.all}",
+                "togglable": false,
+                "clickHandler": "clearFilter",
+                "rules": {
+                    "ruleSuccessProperty": "visibility",
+                    "multipleExecutionsAvailable": false
+                }
+            },
+            "references": [
+                {
+                    "name": "handlerScope",
+                    "providing": "mapapps-github-manager.FilterHandler"
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }

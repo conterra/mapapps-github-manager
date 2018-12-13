@@ -17,6 +17,7 @@ import ".";
 import "./BundleStore";
 import "./BundleDetailsController";
 import "./BundleWidgetFactory";
+import "./FilterHandler";
 import "dataview/DataView";
 import "dataview/DataViewController";
 import "ct/tools/Tool";
