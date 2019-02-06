@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="bundleTitle">{{i18n.highlightBundles}}</div>
-        <v-carousel v-if="bundles.length>0" :cycle=false>
+        <v-carousel v-if="bundles.length>0" :cycle=false :height="350">
             <v-carousel-item v-for="(bundle, index) in bundles" :key="bundle.id">
                 <v-container class="bundleInfoContainer">
                     <v-card raised>
@@ -38,11 +38,11 @@
                                 </v-card-actions>
                             </v-flex>
                             <v-flex xs12 sm4 md6 class="hidden-xs-and-down">
-                                <v-card-media
+                                <v-img
                                         @click="openLink(bundle.html_url + '/raw/' + bundle.default_branch + '/' + 'screenshot.JPG')"
                                         v-bind:src="bundle.html_url + '/raw/' + bundle.default_branch + '/' + 'screenshot.JPG'"
                                         height="250px">
-                                </v-card-media>
+                                </v-img>
                             </v-flex>
                         </v-layout>
                     </v-card>
