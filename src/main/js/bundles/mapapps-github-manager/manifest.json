@@ -31,14 +31,6 @@
                 "dockTool": "appmanagement_githubBundleListTool"
             }
         }
-        /*,
-            {
-              "widgetRole": "githubBundlesDataView",
-              "attachTo": "manager-tabbed-window",
-              "window": {
-                "dockTool": "appmanagement_githubBundleListTool"
-              }
-            }*/
     ],
     "components": [
         {
@@ -129,6 +121,7 @@
             ],
             "propertiesConstructor": true,
             "properties": {
+                "id":"githubBundlesDataView",
                 "_i18nPath": "dataViewCommon",
                 "widgetRole": "githubBundlesDataView",
                 "showFilter": true,
@@ -277,8 +270,6 @@
         {
             "name": "FilterHandler",
             "provides": ["mapapps-github-manager.FilterHandler"],
-            "properties": {
-            },
             "references": [
                 {
                     "name": "_githubBundlesDataView",
@@ -294,15 +285,11 @@
             "properties": {
                 "toolRole": "githubbundlesview",
                 "id": "filter4x",
-                "iconClass": "icon-filter",
+                "iconClass": "icon-radio-unselected",
                 "toolClass": "ctTool--showLabel",
                 "title": "${filter.four}",
                 "togglable": false,
-                "clickHandler": "filter4x",
-                "rules": {
-                    "ruleSuccessProperty": "visibility",
-                    "multipleExecutionsAvailable": false
-                }
+                "clickHandler": "filter4x"
             },
             "references": [
                 {
@@ -320,14 +307,10 @@
                 "toolRole": "githubbundlesview",
                 "id": "filter3x",
                 "togglable": false,
-                "iconClass": "icon-filter",
+                "iconClass": "icon-radio-unselected",
                 "toolClass": "ctTool--showLabel",
                 "title": "${filter.three}",
-                "clickHandler": "filter3x",
-                "rules": {
-                    "ruleSuccessProperty": "visibility",
-                    "multipleExecutionsAvailable": false
-                }
+                "clickHandler": "filter3x"
             },
             "references": [
                 {
@@ -344,15 +327,11 @@
             "properties": {
                 "toolRole": "githubbundlesview",
                 "id": "clearFilter",
-                "iconClass": "icon-filter",
+                "iconClass": "icon-radio-unselected",
                 "toolClass": "ctTool--showLabel",
                 "title": "${filter.all}",
                 "togglable": false,
-                "clickHandler": "clearFilter",
-                "rules": {
-                    "ruleSuccessProperty": "visibility",
-                    "multipleExecutionsAvailable": false
-                }
+                "clickHandler": "clearFilter"
             },
             "references": [
                 {

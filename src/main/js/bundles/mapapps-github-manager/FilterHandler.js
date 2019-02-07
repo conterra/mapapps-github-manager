@@ -15,37 +15,49 @@
  */
 import declare from "dojo/_base/declare";
 import _Widget from "dijit/_Widget";
-import domConstruct from "dojo/dom-construct";
 import "dijit/layout/BorderContainer";
 import "dijit/layout/ContentPane";
+import css from "ct/util/css"
 
 const FilterHandler = declare([_Widget], {
     activate: function (ctx) {
+        this.activeFilter;
     },
     deactivate: function () {
         this.disconnect();
     },
-    filter4x: function () {
-        if('3.x' in this._githubBundlesDataView.model.namedQueries._namedQueries){
+    filter4x: function (e) {
+        if ('4.x' in this._githubBundlesDataView.model.namedQueries._namedQueries) {
+            return
+        }
+        if (this.activeFilter) {
+            css.toggleClass(this.activeFilter, 'dijitChecked'); //adds class if its not added yet, else removes
+        }
+        if ('3.x' in this._githubBundlesDataView.model.namedQueries._namedQueries) {
             this._githubBundlesDataView.model.removeNamedQuery('3.x')
         }
-        if('4.x' in this._githubBundlesDataView.model.namedQueries._namedQueries){
-           return
-        }
+
         this._githubBundlesDataView.model.setNamedQuery({
             name: "4.x", //  the name of the query. We use this to remove or overwrite this query later
             query: {
                 fourXsupport: {"$eq": true}
             }  // the actual query object
         });
+
+        css.toggleClass(e.buttonEvent.target.parentElement, 'dijitChecked');
+        this.activeFilter = e.buttonEvent.target.parentElement;
+
     },
 
-    filter3x: function () {
-        if('4.x' in this._githubBundlesDataView.model.namedQueries._namedQueries){
-            this._githubBundlesDataView.model.removeNamedQuery('4.x')
-        }
-        if('3.x' in this._githubBundlesDataView.model.namedQueries._namedQueries){
+    filter3x: function (e) {
+        if ('3.x' in this._githubBundlesDataView.model.namedQueries._namedQueries) {
             return
+        }
+        if (this.activeFilter) {
+            css.toggleClass(this.activeFilter, 'dijitChecked'); //adds class if its not added yet, else removes
+        }
+        if ('4.x' in this._githubBundlesDataView.model.namedQueries._namedQueries) {
+            this._githubBundlesDataView.model.removeNamedQuery('4.x')
         }
         this._githubBundlesDataView.model.setNamedQuery({
             name: "3.x", //  the name of the query. We use this to remove or overwrite this query later
@@ -53,15 +65,25 @@ const FilterHandler = declare([_Widget], {
                 threeXsupport: {"$eq": true}
             }  // the actual query object
         });
+        css.toggleClass(e.buttonEvent.target.parentElement, 'dijitChecked');
+        this.activeFilter = e.buttonEvent.target.parentElement;
     },
 
-    clearFilter: function () {
-        if('3.x' in this._githubBundlesDataView.model.namedQueries._namedQueries){
+    clearFilter: function (e) {
+        if (this.activeFilter === e.buttonEvent.target.parentElement) {
+            return;
+        }
+        if (this.activeFilter) {
+            css.toggleClass(this.activeFilter, 'dijitChecked'); //adds class if its not added yet, else removes
+        }
+        if ('3.x' in this._githubBundlesDataView.model.namedQueries._namedQueries) {
             this._githubBundlesDataView.model.removeNamedQuery('3.x')
         }
-        if('4.x' in this._githubBundlesDataView.model.namedQueries._namedQueries){
+        if ('4.x' in this._githubBundlesDataView.model.namedQueries._namedQueries) {
             this._githubBundlesDataView.model.removeNamedQuery('4.x')
         }
+        css.toggleClass(e.buttonEvent.target.parentElement, 'dijitChecked');
+        this.activeFilter = e.buttonEvent.target.parentElement;
     }
 
 });

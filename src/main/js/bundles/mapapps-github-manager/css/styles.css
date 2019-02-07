@@ -4,11 +4,11 @@
 }
 
 .ctAppRoot .bundleWidget .topContentPane {
-    height: 330px;
+    height: 380px;
 }
 
 .ctAppRoot .bundleWidget .topContentPane .carousel {
-    height: 300px;
+    height: 290px;
     box-shadow: none;
 }
 
@@ -33,3 +33,9 @@
 .ctAppRoot .bundleWidget .topContentPane .carousel .jumbotron .chips {
     margin-top: 10px;
 }
+
+
+.ctAppRoot .bundleWidget .dijitButton.dijitChecked .icon-radio-unselected:before{
+    content:'\e002';
+}
+
