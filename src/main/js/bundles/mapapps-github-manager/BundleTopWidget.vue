@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="bundleTitle">{{i18n.highlightBundles}}</div>
-        <v-carousel v-if="bundles.length>0" :cycle=false :height="350">
+        <v-carousel v-if="bundles.length>0" :cycle=false :height="320">
             <v-carousel-item v-for="(bundle, index) in bundles" :key="bundle.id">
                 <v-container class="bundleInfoContainer">
                     <v-card raised>

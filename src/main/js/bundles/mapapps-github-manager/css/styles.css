@@ -4,36 +4,29 @@
 }
 
 .ctAppRoot .bundleWidget .topContentPane {
-    height: 380px;
+    height: 350px;
 }
 
-.ctAppRoot .bundleWidget .topContentPane .carousel {
-    height: 290px;
+.ctAppRoot .bundleWidget .topContentPane .v-carousel {
     box-shadow: none;
 }
 
-.ctAppRoot .bundleWidget .topContentPane .carousel .jumbotron .bundleInfoContainer .card {
+.ctAppRoot .bundleWidget .topContentPane .v-carousel .bundleInfoContainer .v-card {
     background-color: rgba(97, 97, 101, 0.5);
 }
-.ctAppRoot .bundleWidget .topContentPane .carousel .jumbotron .bundleInfoContainer .card .card__media {
+.ctAppRoot .bundleWidget .topContentPane .v-carousel .bundleInfoContainer .v-card .v-image {
     cursor: pointer;
-
 }
 
-.ctAppRoot .bundleWidget .topContentPane .carousel .carousel__controls {
+.ctAppRoot .bundleWidget .topContentPane .v-carousel__controls {
     background: transparent;
     height: 30px;
 }
 
-.ctAppRoot .bundleWidget .topContentPane .carousel .carousel__left,
-.ctAppRoot .bundleWidget .topContentPane .carousel .carousel__right {
+.ctAppRoot .bundleWidget .v-carousel__prev,
+.ctAppRoot .bundleWidget .v-carousel__next {
     top: 45%;
 }
-
-.ctAppRoot .bundleWidget .topContentPane .carousel .jumbotron .chips {
-    margin-top: 10px;
-}
-
 
 .ctAppRoot .bundleWidget .dijitButton.dijitChecked .icon-radio-unselected:before{
     content:'\e002';
