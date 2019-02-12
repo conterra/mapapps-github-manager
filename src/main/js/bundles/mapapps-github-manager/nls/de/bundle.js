@@ -85,10 +85,10 @@ module.exports = {
         instructions: "Wählen Sie die gewünschte Version und klicken anschließend auf 'Installieren'"
     },
     filter: {
+        filter: "Filter ",
         four: "Linie 4",
         three: "Linie 3",
         all: "Alle"
-
     }
 
 };

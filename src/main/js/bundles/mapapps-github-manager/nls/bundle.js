@@ -88,10 +88,10 @@ module.exports = {
             instructions: "Please choose the desired bundle version and press 'Install'"
         },
         filter:{
+            filter: "Filter ",
             four: "Line 4",
             three: "Line 3",
             all: "All"
-
         }
     },
     "de": true
