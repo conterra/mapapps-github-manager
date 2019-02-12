@@ -22,7 +22,7 @@ import template from "dojo/text!./templates/BundleWidget.html";
 import "dijit/layout/BorderContainer";
 import "dijit/layout/ContentPane";
 
-const BundleWidget = declare([_Widget, _TemplatedMixin, _WidgetsInTemplateMixin], {
+export default declare([_Widget, _TemplatedMixin, _WidgetsInTemplateMixin], {
 
     baseClass: "bundleWidget",
     templateString: template,
@@ -32,17 +32,14 @@ const BundleWidget = declare([_Widget, _TemplatedMixin, _WidgetsInTemplateMixin]
 
         this._centerContentPane.set("content", this.githubBundlesDataView);
         domConstruct.place(this.topWidget.domNode, this._topContentPane.domNode);
-
     },
-    resize: function (dims) {
 
+    resize: function (dims) {
         this._container.resize(dims);
-        if(this.githubBundlesDataView.domNode.childNodes[1].childNodes[1].childNodes["0"].textContent.includes("Filter")){
+        if (this.githubBundlesDataView.domNode.childNodes[1].childNodes[1].childNodes["0"].textContent.includes("Filter")) {
             return;
         }
-        this.githubBundlesDataView.domNode.childNodes[1].childNodes[1].childNodes["0"].textContent="Filter ";
+        this.githubBundlesDataView.domNode.childNodes[1].childNodes[1].childNodes["0"].textContent = "Filter ";
     }
 
 });
-
-module.exports = BundleWidget;

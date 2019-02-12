@@ -121,7 +121,7 @@
             ],
             "propertiesConstructor": true,
             "properties": {
-                "id":"githubBundlesDataView",
+                "id": "githubBundlesDataView",
                 "_i18nPath": "dataViewCommon",
                 "widgetRole": "githubBundlesDataView",
                 "showFilter": true,
@@ -269,7 +269,9 @@
         },
         {
             "name": "FilterHandler",
-            "provides": ["mapapps-github-manager.FilterHandler"],
+            "provides": [
+                "mapapps-github-manager.FilterHandler"
+            ],
             "references": [
                 {
                     "name": "_githubBundlesDataView",
@@ -280,7 +282,9 @@
         {
             "name": "Filter4xTool",
             "impl": "ct/tools/Tool",
-            "provides": ["ct.tools.Tool"],
+            "provides": [
+                "ct.tools.Tool"
+            ],
             "propertiesConstructor": true,
             "properties": {
                 "toolRole": "githubbundlesview",
@@ -302,7 +306,9 @@
         {
             "name": "Filter3xTool",
             "impl": "ct/tools/Tool",
-            "provides": ["ct.tools.Tool"],
+            "provides": [
+                "ct.tools.Tool"
+            ],
             "propertiesConstructor": true,
             "properties": {
                 "toolRole": "githubbundlesview",
@@ -324,7 +330,9 @@
         {
             "name": "ClearFilterTool",
             "impl": "ct/tools/Tool",
-            "provides": ["ct.tools.Tool"],
+            "provides": [
+                "ct.tools.Tool"
+            ],
             "propertiesConstructor": true,
             "properties": {
                 "toolRole": "githubbundlesview",

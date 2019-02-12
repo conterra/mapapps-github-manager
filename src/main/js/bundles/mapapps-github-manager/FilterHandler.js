@@ -17,15 +17,9 @@ import declare from "dojo/_base/declare";
 import _Widget from "dijit/_Widget";
 import "dijit/layout/BorderContainer";
 import "dijit/layout/ContentPane";
-import css from "ct/util/css"
+import css from "ct/util/css";
 
-const FilterHandler = declare([_Widget], {
-    activate: function (ctx) {
-        this.activeFilter;
-    },
-    deactivate: function () {
-        this.disconnect();
-    },
+export default declare([_Widget], {
     filter4x: function (e) {
         if ('4.x' in this._githubBundlesDataView.model.namedQueries._namedQueries) {
             return
@@ -46,7 +40,6 @@ const FilterHandler = declare([_Widget], {
 
         css.toggleClass(e.buttonEvent.target.parentElement, 'dijitChecked');
         this.activeFilter = e.buttonEvent.target.parentElement;
-
     },
 
     filter3x: function (e) {
@@ -87,5 +80,3 @@ const FilterHandler = declare([_Widget], {
     }
 
 });
-
-module.exports = FilterHandler;

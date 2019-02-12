@@ -19,7 +19,7 @@ import BundleTopWidget from "./BundleTopWidget.vue";
 import Vue from "apprt-vue/Vue";
 import VueDijit from "apprt-vue/VueDijit";
 
-class BundleWidgetFactory {
+export default class BundleWidgetFactory {
 
     activate() {
         let i18n = this._i18n.get();
@@ -32,9 +32,6 @@ class BundleWidgetFactory {
 
     createInstance() {
         let i18n = this._i18n.get();
-
-
-
         return new BundleWidget({
             i18n: i18n,
             githubBundlesDataView: this._githubBundlesDataView,
@@ -43,6 +40,4 @@ class BundleWidgetFactory {
     }
 
 }
-
-module.exports = BundleWidgetFactory;
 

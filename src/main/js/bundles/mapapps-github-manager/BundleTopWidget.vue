@@ -32,16 +32,17 @@
                                     </v-btn>
                                     <v-btn @click="openLink(bundle.html_url)" color="info">
                                         <v-icon class="hidden-sm-and-down" left>launch</v-icon>
-                                        <span class="hidden-sm-and-down">{{i18n.highlightBundleView.openInGithub}}</span>
+                                        <span
+                                            class="hidden-sm-and-down">{{i18n.highlightBundleView.openInGithub}}</span>
                                         <v-icon class="hidden-md-and-up">launch</v-icon>
                                     </v-btn>
                                 </v-card-actions>
                             </v-flex>
                             <v-flex xs12 sm4 md6 class="hidden-xs-and-down">
                                 <v-img
-                                        @click="openLink(bundle.html_url + '/raw/' + bundle.default_branch + '/' + 'screenshot.JPG')"
-                                        v-bind:src="bundle.html_url + '/raw/' + bundle.default_branch + '/' + 'screenshot.JPG'"
-                                        height="250px">
+                                    @click="openLink(bundle.html_url + '/raw/' + bundle.default_branch + '/' + 'screenshot.JPG')"
+                                    v-bind:src="bundle.html_url + '/raw/' + bundle.default_branch + '/' + 'screenshot.JPG'"
+                                    height="250px">
                                 </v-img>
                             </v-flex>
                         </v-layout>

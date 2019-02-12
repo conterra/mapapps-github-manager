@@ -21,7 +21,7 @@ import Hash from "ct/Hash";
 import apprt_request from "apprt-request";
 import ComplexMemory from "ct/store/ComplexMemory";
 
-const BundleDetailsController = declare([_Connect], {
+export default declare([_Connect], {
     // injected
     dataformService: null,
     windowManager: null,
@@ -68,24 +68,26 @@ const BundleDetailsController = declare([_Connect], {
             }
         }]
     },
+
     /**
      * @constructs
      */
     constructor: function () {
     },
+
     activate: function (ctx) {
         let i18n = this.i18n = this._i18n.get().bundleDetailsView;
         this.effectiveWidgetDefinition = this._substituteWidgetDefinition(this.widgetDefinition, i18n);
         this.bCtx = ctx.getBundleContext();
-
     },
+
     deactivate: function () {
         this.effectiveWidgetDefinition = null;
         this.i18n = null;
         this.disconnect();
     },
-    showDetails: function (params) {
 
+    showDetails: function (params) {
         let i18n = this.i18n;
         let id = params.getProperty && params.getProperty("id") || params.id;
         if (!id) {
@@ -95,8 +97,7 @@ const BundleDetailsController = declare([_Connect], {
         if (item.length && item[0].has_downloads) {
             this.currentItem = item[0];
             this._createWindow(this.currentItem, i18n);
-        }
-        else {
+        } else {
 
             let w = this.detailWindow = this.windowManager.createModalWindow({
                 title: i18n.noReleasesTitle,
@@ -108,8 +109,8 @@ const BundleDetailsController = declare([_Connect], {
             w.show();
         }
     },
-    _createWindow: function (item, i18n) {
 
+    _createWindow: function (item, i18n) {
         let tagsUrl = "https://api.github.com/repos/conterra/" + item.name + "/releases";
         let id = "tagsStore";
 
@@ -142,8 +143,7 @@ const BundleDetailsController = declare([_Connect], {
                 }));
                 content = widget;
 
-            }
-            else {
+            } else {
                 content = i18n.noReleasesYet;
             }
             let w = this.detailWindow = this.windowManager.createModalWindow({
@@ -158,6 +158,7 @@ const BundleDetailsController = declare([_Connect], {
 
 
     },
+
     _createWidget: function (item, i18n) {
         let dfService = this.dataformService;
         let form = this.form = dfService.createDataForm(this.effectiveWidgetDefinition);
@@ -168,9 +169,11 @@ const BundleDetailsController = declare([_Connect], {
 
         return form;
     },
+
     _substituteWidgetDefinition: function (widgetDefinition, params) {
         return new Hash(widgetDefinition).substitute(params, true).asMap();
     },
+
     _triggerAddBundleProcess: function () {
         let item = this.currentItem;
         let binding = this.form.get("dataBinding");
@@ -189,11 +192,13 @@ const BundleDetailsController = declare([_Connect], {
             }, this);
         }
     },
+
     _downloadArchive: function (url) {
         return apprt_request(url, {
             handleAs: "blob"
         });
     },
+
     _uploadBundle: function (blob) {
         this.buttonWidget.set("label", this.i18n.uploading);
         let fileName = this.currentItem.name + ".zip";
@@ -214,11 +219,7 @@ const BundleDetailsController = declare([_Connect], {
                 this.detailWindow.close()
             }), 1500);
         }, function (e) {
-
             this.detailWindow.set("content", this.i18n.integrationFailed);
-
         }, this);
     }
 });
-
-module.exports = BundleDetailsController;

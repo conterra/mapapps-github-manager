@@ -20,7 +20,7 @@ import ct_when from "ct/_when";
 import apprt_request from "apprt-request";
 import d_array from "dojo/_base/array";
 
-const BundleStore = declare([ComplexMemory], {
+export default declare([ComplexMemory], {
     jsonp: true,
     constructor: function () {
         if (TypeFormat["stars"]) {
@@ -117,12 +117,12 @@ const BundleStore = declare([ComplexMemory], {
             });
 
         ct_when(request, function (data) {
-            data.items.forEach(item =>{
+            data.items.forEach(item => {
                 if (item.topics.includes('4x')) {
-                    item.fourXsupport=true;
+                    item.fourXsupport = true;
                 }
                 if (item.topics.includes('3x')) {
-                    item.threeXsupport=true;
+                    item.threeXsupport = true;
                 }
             });
             this.setData(data);
@@ -138,5 +138,3 @@ const BundleStore = declare([ComplexMemory], {
         });
     }
 });
-
-module.exports = BundleStore;
