@@ -18,6 +18,10 @@
     cursor: pointer;
 }
 
+.bundleWidget .v-carousel__item .v-responsive__content{
+    flex-grow: 1;
+}
+
 .ctAppRoot .bundleWidget .topContentPane .v-carousel__controls {
     background: transparent;
     height: 30px;
