@@ -157,12 +157,12 @@
                             },
                             "title": "${bundlesView.url}"
                         },
-                        {
-                            "matches": {
-                                "name": "topics"
-                            },
-                            "title": "${bundlesView.topics}"
-                        },
+                        // {
+                        //     "matches": {
+                        //         "name": "topics"
+                        //     },
+                        //     "title": "${bundlesView.topics}"
+                        // },
                         {
                             "matches": {
                                 "name": "stargazers_count"
@@ -266,90 +266,90 @@
                     "providing": "ct.framework.api.EventService"
                 }
             ]
-        },
-        {
-            "name": "FilterHandler",
-            "provides": [
-                "mapapps-github-manager.FilterHandler"
-            ],
-            "references": [
-                {
-                    "name": "_githubBundlesDataView",
-                    "providing": "mapapps-github-manager.GithubBundlesDataView"
-                }
-            ]
-        },
-        {
-            "name": "Filter4xTool",
-            "impl": "ct/tools/Tool",
-            "provides": [
-                "ct.tools.Tool"
-            ],
-            "propertiesConstructor": true,
-            "properties": {
-                "toolRole": "githubbundlesview",
-                "id": "filter4x",
-                "priority": 2,
-                "iconClass": "icon-radio-unselected",
-                "toolClass": "ctTool--showLabel",
-                "title": "${filter.four}",
-                "togglable": false,
-                "clickHandler": "filter4x"
-            },
-            "references": [
-                {
-                    "name": "handlerScope",
-                    "providing": "mapapps-github-manager.FilterHandler"
-                }
-            ]
-        },
-        {
-            "name": "Filter3xTool",
-            "impl": "ct/tools/Tool",
-            "provides": [
-                "ct.tools.Tool"
-            ],
-            "propertiesConstructor": true,
-            "properties": {
-                "toolRole": "githubbundlesview",
-                "id": "filter3x",
-                "priority": 1,
-                "togglable": false,
-                "iconClass": "icon-radio-unselected",
-                "toolClass": "ctTool--showLabel",
-                "title": "${filter.three}",
-                "clickHandler": "filter3x"
-            },
-            "references": [
-                {
-                    "name": "handlerScope",
-                    "providing": "mapapps-github-manager.FilterHandler"
-                }
-            ]
-        },
-        {
-            "name": "ClearFilterTool",
-            "impl": "ct/tools/Tool",
-            "provides": [
-                "ct.tools.Tool"
-            ],
-            "propertiesConstructor": true,
-            "properties": {
-                "toolRole": "githubbundlesview",
-                "priority": 3,
-                "id": "clearFilter",
-                "iconClass": "icon-radio-unselected",
-                "toolClass": "ctTool--showLabel",
-                "title": "${filter.all}",
-                "togglable": false,
-                "clickHandler": "clearFilter"
-            },
-            "references": [
-                {
-                    "name": "handlerScope",
-                    "providing": "mapapps-github-manager.FilterHandler"
-                }
-            ]
         }
+        // {
+        //     "name": "FilterHandler",
+        //     "provides": [
+        //         "mapapps-github-manager.FilterHandler"
+        //     ],
+        //     "references": [
+        //         {
+        //             "name": "_githubBundlesDataView",
+        //             "providing": "mapapps-github-manager.GithubBundlesDataView"
+        //         }
+        //     ]
+        // },
+        // {
+        //     "name": "Filter4xTool",
+        //     "impl": "ct/tools/Tool",
+        //     "provides": [
+        //         "ct.tools.Tool"
+        //     ],
+        //     "propertiesConstructor": true,
+        //     "properties": {
+        //         "toolRole": "githubbundlesview",
+        //         "id": "filter4x",
+        //         "priority": 2,
+        //         "iconClass": "icon-radio-unselected",
+        //         "toolClass": "ctTool--showLabel",
+        //         "title": "${filter.four}",
+        //         "togglable": false,
+        //         "clickHandler": "filter4x"
+        //     },
+        //     "references": [
+        //         {
+        //             "name": "handlerScope",
+        //             "providing": "mapapps-github-manager.FilterHandler"
+        //         }
+        //     ]
+        // },
+        // {
+        //     "name": "Filter3xTool",
+        //     "impl": "ct/tools/Tool",
+        //     "provides": [
+        //         "ct.tools.Tool"
+        //     ],
+        //     "propertiesConstructor": true,
+        //     "properties": {
+        //         "toolRole": "githubbundlesview",
+        //         "id": "filter3x",
+        //         "priority": 1,
+        //         "togglable": false,
+        //         "iconClass": "icon-radio-unselected",
+        //         "toolClass": "ctTool--showLabel",
+        //         "title": "${filter.three}",
+        //         "clickHandler": "filter3x"
+        //     },
+        //     "references": [
+        //         {
+        //             "name": "handlerScope",
+        //             "providing": "mapapps-github-manager.FilterHandler"
+        //         }
+        //     ]
+        // },
+        // {
+        //     "name": "ClearFilterTool",
+        //     "impl": "ct/tools/Tool",
+        //     "provides": [
+        //         "ct.tools.Tool"
+        //     ],
+        //     "propertiesConstructor": true,
+        //     "properties": {
+        //         "toolRole": "githubbundlesview",
+        //         "priority": 3,
+        //         "id": "clearFilter",
+        //         "iconClass": "icon-radio-unselected",
+        //         "toolClass": "ctTool--showLabel",
+        //         "title": "${filter.all}",
+        //         "togglable": false,
+        //         "clickHandler": "clearFilter"
+        //     },
+        //     "references": [
+        //         {
+        //             "name": "handlerScope",
+        //             "providing": "mapapps-github-manager.FilterHandler"
+        //         }
+        //     ]
+        // }
     ]
 }
