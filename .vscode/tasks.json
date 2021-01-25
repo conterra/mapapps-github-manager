@@ -11,7 +11,8 @@
             "label": "Run stand-alone Jetty Server",
             "type": "shell",
             "command": "mvn clean jetty:run -P'watch-all,include-mapapps-deps'",
-            "group": "build"
+            "group": "build",
+            "problemMatcher": []
         },
         {
             "label": "Install",
@@ -20,7 +21,8 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "problemMatcher": []
         }
     ]
 }
