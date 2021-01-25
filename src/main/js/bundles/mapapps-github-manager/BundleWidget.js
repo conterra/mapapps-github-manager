@@ -32,16 +32,16 @@ export default declare([_Widget, _TemplatedMixin, _WidgetsInTemplateMixin], {
 
         this._centerContentPane.set("content", this.githubBundlesDataView);
         domConstruct.place(this.topWidget.domNode, this._topContentPane.domNode);
-        this._addFilterText();
+        //this._addFilterText();
     },
 
     resize: function (dims) {
         this._container.resize(dims);
-    },
-
-    _addFilterText() {
-        let i18n = this.i18n.filter;
-        this.githubBundlesDataView.domNode.childNodes[1].childNodes[1].childNodes["0"].textContent = i18n.filter;
     }
+
+    // _addFilterText() {
+    //     let i18n = this.i18n.filter;
+    //     this.githubBundlesDataView.domNode.childNodes[1].childNodes[1].childNodes["0"].textContent = i18n.filter;
+    // }
 
 });
