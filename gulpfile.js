@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 const gulp = require("gulp");
-const run_sequence = require('run-sequence');
 const mapapps = require('ct-mapapps-gulp-js');
 
 mapapps.registerTasks({
@@ -32,10 +31,38 @@ mapapps.registerTasks({
     }*/
 });
 
-gulp.task("default", function (callback) {
-    run_sequence(
+gulp.task("default",
+    gulp.series(
         "copy-resources",
         "themes-copy",
-        ["js-transpile", "themes-compile"],
-        callback);
+        gulp.parallel("js-transpile", "themes-compile")
+    )
+);
+
+gulp.task("compress",
+    gulp.series(
+        "copy-resources",
+        "themes-copy",
+        gulp.parallel(
+            "js-transpile",
+            gulp.series(
+                "themes-compile",
+                "themes-compress"
+            )
+        )
+    )
+);
+
+gulp.task("run-js-tests", function (done) {
+    const initialWait = 10000;
+    setTimeout(() => {
+        const trigger = gulp.series("run-browser-tests");
+        trigger(done);
+    }, initialWait);
+});
+
+gulp.task("skip", function (done) {
+    setTimeout(() => {
+        done();
+    }, 1);
 });
