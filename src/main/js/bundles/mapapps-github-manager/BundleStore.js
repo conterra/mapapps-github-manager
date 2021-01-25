@@ -42,9 +42,9 @@ export default declare([ComplexMemory], {
             if (value.includes('4x')) {
                 version.push('4x');
             }
-            if (value.includes('3x')) {
-                version.push('3x');
-            }
+            // if (value.includes('3x')) {
+            //     version.push('3x');
+            // }
             return version;
         };
 
@@ -85,10 +85,10 @@ export default declare([ComplexMemory], {
                     "name": "fourXsupport",
                     "type": "boolean"
                 },
-                {
-                    "name": "threeXsupport",
-                    "type": "boolean"
-                },
+                // {
+                //     "name": "threeXsupport",
+                //     "type": "boolean"
+                // },
                 {
                     "name": "topics",
                     "type": "string",
@@ -121,12 +121,22 @@ export default declare([ComplexMemory], {
         ct_when(request, function (data) {
             data.items.forEach(item => {
                 if (item.topics.includes('4x')) {
-                    item.fourXsupport = true;
-                }
-                if (item.topics.includes('3x')) {
-                    item.threeXsupport = true;
+                    item.fourXsupport = true
+                } else {
+                    item.fourXsupport = false
+                    console.log("false")
                 }
             });
+
+            for (let i = 0; i < data.items.length; i++){
+                if(data.items[i].fourXsupport === false) {
+                    console.log(data.items[i].fourXsupport)
+                    data.items.splice(i, 1)
+                }
+            }
+
+            console.log(data);
+
             this.setData(data);
         }, this.handleError, this);
     },
