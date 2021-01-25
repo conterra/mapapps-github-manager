@@ -17,63 +17,90 @@
 -->
 <template>
     <div>
-        <div class="bundleTitle">{{ i18n.highlightBundles }}</div>
+        <div class="bundleTitle">
+            {{ i18n.highlightBundles }}
+        </div>
         <v-carousel
             v-if="bundles.length>0"
             :cycle="false"
-            :height="320">
+            :height="320"
+        >
             <v-carousel-item
                 v-for="bundle in bundles"
-                :key="bundle.id">
+                :key="bundle.id"
+            >
                 <v-container class="bundleInfoContainer">
                     <v-card raised>
                         <v-layout
                             row
-                            wrap>
+                            wrap
+                        >
                             <v-flex
                                 xs12
                                 sm8
-                                md6>
+                                md6
+                            >
                                 <v-card-title>
                                     <div>
-                                        <h3 class="headline mb-0">{{ bundle.name }}</h3>
+                                        <h3 class="headline mb-0">
+                                            {{ bundle.name }}
+                                        </h3>
                                     </div>
                                 </v-card-title>
                                 <v-card-text>
-                                    <div class="description">{{ bundle.description }}</div>
+                                    <div class="description">
+                                        {{ bundle.description }}
+                                    </div>
                                 </v-card-text>
-                                <v-spacer/>
+                                <v-spacer />
                                 <v-card-actions>
                                     <v-btn
                                         color="primary"
-                                        @click="installBundle(bundle.id)">
+                                        @click="installBundle(bundle.id)"
+                                    >
                                         <v-icon
                                             class="hidden-sm-and-down"
-                                            left>icon-download
+                                            left
+                                        >
+                                            icon-download
                                         </v-icon>
                                         <span class="hidden-sm-and-down">{{ i18n.highlightBundleView.install }}</span>
-                                        <v-icon class="hidden-md-and-up">icon-download</v-icon>
+                                        <v-icon class="hidden-md-and-up">
+                                            icon-download
+                                        </v-icon>
                                     </v-btn>
                                     <v-btn
                                         color="info"
-                                        @click="openLink(bundle.homepage)">
+                                        @click="openLink(bundle.homepage)"
+                                    >
                                         <v-icon
                                             class="hidden-sm-and-down"
-                                            left>icon-app-launch
+                                            left
+                                        >
+                                            icon-app-launch
                                         </v-icon>
                                         <span class="hidden-sm-and-down">{{ i18n.highlightBundleView.demo }}</span>
-                                        <v-icon class="hidden-md-and-up">icon-app-launch</v-icon>
+                                        <v-icon class="hidden-md-and-up">
+                                            icon-app-launch
+                                        </v-icon>
                                     </v-btn>
                                     <v-btn
                                         color="info"
-                                        @click="openLink(bundle.html_url)">
+                                        @click="openLink(bundle.html_url)"
+                                    >
                                         <v-icon
                                             class="hidden-sm-and-down"
-                                            left>launch
+                                            left
+                                        >
+                                            launch
                                         </v-icon>
                                         <span
-                                            class="hidden-sm-and-down">{{ i18n.highlightBundleView.openInGithub }}</span>
-                                        <v-icon class="hidden-md-and-up">launch</v-icon>
+                                            class="hidden-sm-and-down">
+                                            {{ i18n.highlightBundleView.openInGithub }}
+                                        </span>
+                                        <v-icon class="hidden-md-and-up">
+                                            launch
+                                        </v-icon>
                                     </v-btn>
                                 </v-card-actions>
                             </v-flex>
@@ -81,7 +108,8 @@
                                 xs12
                                 sm4
                                 md6
-                                class="hidden-xs-and-down">
+                                class="hidden-xs-and-down"
+                            >
                                 <v-img
                                     :src="bundle.html_url + '/raw/' + bundle.default_branch + '/' + 'screenshot.JPG'"
                                     height="250px"

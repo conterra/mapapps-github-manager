@@ -28,6 +28,7 @@ export default declare([ComplexMemory], {
         }
         // register new formatter at ct/util/TypeFormatter class
         TypeFormat["stars"] = function (value) {
+            // eslint-disable-next-line max-len
             let star = '<svg aria-label="stars" class="octicon octicon-star" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill="#f1c40f" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74z"></path></svg>'
             return star + " " + value;
         };
@@ -100,6 +101,7 @@ export default declare([ComplexMemory], {
                 }
             ]
         };
+        // eslint-disable-next-line max-len
         this.target = this.target.lastIndexOf("/") === (this.target.length - 1) ? this.target.substring(0, this.target.lastIndexOf("/")) : this.target;
         let url = this.target + "?q=user%3A" + this.user;
         if (this.topic !== "") {
