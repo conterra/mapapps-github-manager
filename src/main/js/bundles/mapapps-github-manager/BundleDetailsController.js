@@ -182,7 +182,9 @@ export default declare([_Connect], {
             tag = binding.data.tagSelection;
         }
         if (tag) {
-            let url = "https://github.com/conterra/" + item.name + "/releases/download/" + tag + "/" + item.name + "-bundle.zip";
+            let url = "https://github.com/conterra/" + item.name
+                        + "/releases/download/" + tag + "/"
+                        + item.name + "-bundle.zip";
             this.buttonWidget.set("label", this.i18n.downloading);
 
 
