@@ -119,7 +119,11 @@ export default declare([_Connect], {
             let content;
 
             if (response.data.length) {
-                // if response.data.item.tag_name does not contain 4.*.* --> filter
+
+                response.data.sort(function(a, b){
+                    return parseFloat(b.name) - parseFloat(a.name);
+                })
+
                 const tagsStore = new ComplexMemory({
                     id: id,
                     idProperty: "name",
