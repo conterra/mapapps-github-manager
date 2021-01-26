@@ -118,8 +118,12 @@ export default declare([_Connect], {
 
             let content;
 
+            // sort versions in descending order
             if (response.data.length) {
-                // if response.data.item.tag_name does not contain 4.*.* --> filter
+                response.data.sort(function(a, b){
+                    return parseFloat(b.name) - parseFloat(a.name);
+                })
+
                 const tagsStore = new ComplexMemory({
                     id: id,
                     idProperty: "name",
