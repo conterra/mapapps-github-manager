@@ -95,7 +95,8 @@
                                             launch
                                         </v-icon>
                                         <span
-                                            class="hidden-sm-and-down">
+                                            class="hidden-sm-and-down"
+                                        >
                                             {{ i18n.highlightBundleView.openInGithub }}
                                         </span>
                                         <v-icon class="hidden-md-and-up">
@@ -137,7 +138,7 @@
             };
         },
         mounted: function () {
-            let highlightTopic = this.store.highlightTopic;
+            const highlightTopic = this.store.highlightTopic;
             ct_when(this.store.query({}), (results) => {
                 this.bundles = results.filter((bundle) => !!bundle.topics.includes(highlightTopic));
             });

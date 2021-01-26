@@ -21,7 +21,7 @@ import VueDijit from "apprt-vue/VueDijit";
 export default class BundleWidgetFactory {
 
     activate() {
-        let i18n = this._i18n.get();
+        const i18n = this._i18n.get();
         const vm = new Vue(BundleTopWidget);
         this.topWidget = VueDijit(vm);
         vm.store = this.store;
@@ -30,7 +30,7 @@ export default class BundleWidgetFactory {
     }
 
     createInstance() {
-        let i18n = this._i18n.get();
+        const i18n = this._i18n.get();
         return new BundleWidget({
             i18n: i18n,
             githubBundlesDataView: this._githubBundlesDataView,
@@ -39,4 +39,3 @@ export default class BundleWidgetFactory {
     }
 
 }
-

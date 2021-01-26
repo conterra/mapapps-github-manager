@@ -76,7 +76,7 @@ export default declare([_Connect], {
     },
 
     activate: function (ctx) {
-        let i18n = this.i18n = this._i18n.get().bundleDetailsView;
+        const i18n = this.i18n = this._i18n.get().bundleDetailsView;
         this.effectiveWidgetDefinition = this._substituteWidgetDefinition(this.widgetDefinition, i18n);
         this.bCtx = ctx.getBundleContext();
     },
@@ -88,18 +88,18 @@ export default declare([_Connect], {
     },
 
     showDetails: function (params) {
-        let i18n = this.i18n;
-        let id = params.getProperty && params.getProperty("id") || params.id;
+        const i18n = this.i18n;
+        const id = params.getProperty && params.getProperty("id") || params.id;
         if (!id) {
             return;
         }
-        let item = this.store.getBundleDetails(id);
+        const item = this.store.getBundleDetails(id);
         if (item.length && item[0].has_downloads) {
             this.currentItem = item[0];
             this._createWindow(this.currentItem, i18n);
         } else {
 
-            let w = this.detailWindow = this.windowManager.createModalWindow({
+            const w = this.detailWindow = this.windowManager.createModalWindow({
                 title: i18n.noReleasesTitle,
                 draggable: true,
                 dndDraggable: false,
@@ -111,18 +111,19 @@ export default declare([_Connect], {
     },
 
     _createWindow: function (item, i18n) {
-        let tagsUrl = "https://api.github.com/repos/conterra/" + item.name + "/releases";
-        let id = "tagsStore";
+        const tagsUrl = "https://api.github.com/repos/conterra/" + item.name + "/releases";
+        const id = "tagsStore";
 
         ct_when(apprt_request(tagsUrl, {jsonp: true}), function (response) {
 
             let content;
 
             if (response.data.length) {
-                let tagsStore = new ComplexMemory({
+                // if response.data.item.tag_name does not contain 4.*.* --> filter
+                const tagsStore = new ComplexMemory({
                     id: id,
                     idProperty: "name",
-                    data: response.data
+                    data: response.data // version contained here
                 });
 
                 this.bCtx.registerService(["ct.api.Store"], tagsStore, {
@@ -130,11 +131,11 @@ export default declare([_Connect], {
                     useIn: ["dataform"]
                 });
 
-                let widget = this._createWidget(item, i18n);
+                const widget = this._createWidget(item, i18n);
 
                 widget.connect(widget, "onControlEvent", d_lang.hitch(this, function (evt, foo) {
 
-                    let buttonWidget = this.buttonWidget = evt.control._getWidget();
+                    const buttonWidget = this.buttonWidget = evt.control._getWidget();
                     buttonWidget.set("disabled", true);
                     buttonWidget.set("iconClass", "icon-spinner");
 
@@ -146,7 +147,7 @@ export default declare([_Connect], {
             } else {
                 content = i18n.noReleasesYet;
             }
-            let w = this.detailWindow = this.windowManager.createModalWindow({
+            const w = this.detailWindow = this.windowManager.createModalWindow({
                 title: d_lang.replace(i18n.windowTitle, item),
                 draggable: true,
                 dndDraggable: false,
@@ -160,9 +161,9 @@ export default declare([_Connect], {
     },
 
     _createWidget: function (item, i18n) {
-        let dfService = this.dataformService;
-        let form = this.form = dfService.createDataForm(this.effectiveWidgetDefinition);
-        let binding = dfService.createBinding("object", {
+        const dfService = this.dataformService;
+        const form = this.form = dfService.createDataForm(this.effectiveWidgetDefinition);
+        const binding = dfService.createBinding("object", {
             data: item
         });
         form.set("dataBinding", binding);
@@ -175,20 +176,20 @@ export default declare([_Connect], {
     },
 
     _triggerAddBundleProcess: function () {
-        let item = this.currentItem;
-        let binding = this.form.get("dataBinding");
+        const item = this.currentItem;
+        const binding = this.form.get("dataBinding");
         let tag;
         if (binding) {
             tag = binding.data.tagSelection;
         }
         if (tag) {
-            let url = "https://github.com/conterra/" + item.name
+            const url = "https://github.com/conterra/" + item.name
                         + "/releases/download/" + tag + "/"
                         + item.name + "-bundle.zip";
             this.buttonWidget.set("label", this.i18n.downloading);
 
 
-            let downloadRequest = this._downloadArchive(url);
+            const downloadRequest = this._downloadArchive(url);
             ct_when(downloadRequest, this._uploadBundle, function (error) {
                 this.detailWindow.set("content", this.i18n.notFound);
             }, this);
@@ -203,12 +204,12 @@ export default declare([_Connect], {
 
     _uploadBundle: function (blob) {
         this.buttonWidget.set("label", this.i18n.uploading);
-        let fileName = this.currentItem.name + ".zip";
-        let url = this._properties.uploadTarget;
-        let formData = new FormData();
+        const fileName = this.currentItem.name + ".zip";
+        const url = this._properties.uploadTarget;
+        const formData = new FormData();
         formData.append('file', blob, fileName);
         formData.append("f", "json");
-        let uploadRequest = apprt_request.post(url, {
+        const uploadRequest = apprt_request.post(url, {
             data: formData
         });
 

@@ -29,7 +29,7 @@ export default declare([ComplexMemory], {
         // register new formatter at ct/util/TypeFormatter class
         TypeFormat["stars"] = function (value) {
             // eslint-disable-next-line max-len
-            let star = '<svg aria-label="stars" class="octicon octicon-star" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill="#f1c40f" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74z"></path></svg>'
+            const star = '<svg aria-label="stars" class="octicon octicon-star" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill="#f1c40f" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74z"></path></svg>'
             return star + " " + value;
         };
 
@@ -38,7 +38,7 @@ export default declare([ComplexMemory], {
         }
         // register new formatter at ct/util/TypeFormatter class
         TypeFormat["version"] = function (value) {
-            let version = [];
+            const version = [];
             if (value.includes('4x')) {
                 version.push('4x');
             }
@@ -81,10 +81,10 @@ export default declare([ComplexMemory], {
                     "name": "updated_at",
                     "type": "datetime"
                 },
-                {
-                    "name": "fourXsupport",
-                    "type": "boolean"
-                },
+                // {
+                //     "name": "fourXsupport",
+                //     "type": "boolean"
+                // },
                 // {
                 //     "name": "threeXsupport",
                 //     "type": "boolean"
@@ -110,7 +110,7 @@ export default declare([ComplexMemory], {
 
         url = url + "&per_page=100";
 
-        let request = apprt_request(url,
+        const request = apprt_request(url,
             {
                 useProxy: false,
                 headers: {
@@ -119,25 +119,8 @@ export default declare([ComplexMemory], {
             });
 
         ct_when(request, function (data) {
-            data.items.forEach(item => {
-                if (item.topics.includes('4x')) {
-                    item.fourXsupport = true
-                } else {
-                    item.fourXsupport = false
-                    console.log("false")
-                }
-            });
-
-            for (let i = 0; i < data.items.length; i++){
-                if(data.items[i].fourXsupport === false) {
-                    console.log(data.items[i].fourXsupport)
-                    data.items.splice(i, 1)
-                }
-            }
-
-            console.log(data);
-
-            this.setData(data);
+            const filteredData = data.items.filter((item) => item.topics.includes('4x'));
+            this.setData(filteredData);
         }, this.handleError, this);
     },
     handleError: function (error) {
