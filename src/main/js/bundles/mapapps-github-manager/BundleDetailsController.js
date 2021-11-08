@@ -119,15 +119,13 @@ export default declare([_Connect], {
             let content;
 
             if (response.data.length) {
-
-                response.data.sort(function(a, b){
-                    return parseFloat(b.name) - parseFloat(a.name);
-                })
+                const releases = response.data.filter((release) => !release.name.includes("SNAPSHOT"));
+                releases.sort((a, b) => parseFloat(b.name) - parseFloat(a.name))
 
                 const tagsStore = new ComplexMemory({
                     id: id,
                     idProperty: "name",
-                    data: response.data // version contained here
+                    data: releases // version contained here
                 });
 
                 this.bCtx.registerService(["ct.api.Store"], tagsStore, {
@@ -188,8 +186,8 @@ export default declare([_Connect], {
         }
         if (tag) {
             const url = "https://github.com/conterra/" + item.name
-                        + "/releases/download/" + tag + "/"
-                        + item.name + "-bundle.zip";
+                + "/releases/download/" + tag + "/"
+                + item.name + "-bundle.zip";
             this.buttonWidget.set("label", this.i18n.downloading);
 
 
