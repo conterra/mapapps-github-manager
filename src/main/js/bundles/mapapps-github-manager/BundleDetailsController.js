@@ -120,7 +120,8 @@ export default declare([_Connect], {
 
             if (response.data.length) {
                 const releases = response.data.filter((release) => !release.name.includes("SNAPSHOT"));
-                releases.sort((a, b) => parseFloat(b.name) - parseFloat(a.name))
+                releases.sort((a, b) => b.name.replace(/\d+/g, n => +n + 100000)
+                    .localeCompare(a.name.replace(/\d+/g, n => +n + 100000)));
 
                 const tagsStore = new ComplexMemory({
                     id: id,
