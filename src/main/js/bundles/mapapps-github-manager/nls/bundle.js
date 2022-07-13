@@ -85,7 +85,8 @@ module.exports = {
             productName: "Product Name:",
             id: "ID:",
             installButton: "Install",
-            instructions: "Please choose the desired bundle version and press 'Install'"
+            instructions: "Please choose the desired bundle version and press 'Install'",
+            license: "Developer Network Bundles are subject to their own license terms. Details about the license can be found in the respective GitHub repository. By installing the bundle, you accept these terms."
         },
         filter:{
             filter: "Filter ",

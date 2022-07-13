@@ -32,21 +32,29 @@ export default declare([_Connect], {
         "showLabels": false,
         "size": {
             "w": 380,
-            "h": 90
+            "h": 190
         },
         "children": [{
             "type": "label",
             "cssClass": "title",
-            "value": "${instructions}",
+            "value": "${license}",
             "size": {
                 "t": 0,
                 "l": 5
             }
         }, {
             "type": "label",
+            "cssClass": "title",
+            "value": "${instructions}",
+            "size": {
+                "t": 100,
+                "l": 5
+            }
+        }, {
+            "type": "label",
             "value": "${version}",
             "size": {
-                "t": 45,
+                "t": 145,
                 "l": 5
             }
         }, {
@@ -56,14 +64,14 @@ export default declare([_Connect], {
             "store": "tagsStore",
             "required": true,
             "size": {
-                "t": 40,
+                "t": 140,
                 "l": 60
             }
         }, {
             "type": "button",
             "value": "${installButton}",
             "size": {
-                "t": 40,
+                "t": 140,
                 "r": 5
             }
         }]
