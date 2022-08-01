@@ -15,6 +15,9 @@
         "apprt-binding": "^4.3.0",
         "apprt-vuetify": "^4.3.0"
     },
+    "editor": {
+        "suggest": false
+    },
     "CSS-Themes-Extension": [
         {
             "name": "*",
