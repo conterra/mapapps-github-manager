@@ -2,7 +2,7 @@
 This project is intended to be integrated as a bundle to the installation of your map.apps manager.
 
 ## Installation Guide
-**Requirement: map.apps 4.6.0**
+**Requirement: map.apps 4.14**
 
 Before you add the Bundle to your manager, please configure the user and the topic property in the manifest.json to point to your GitHub account. Topic can be left empty.
 You will have to add a released bundle.jar/zip as a bundle in your map.apps manager. 

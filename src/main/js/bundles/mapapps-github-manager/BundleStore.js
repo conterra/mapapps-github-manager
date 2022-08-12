@@ -19,6 +19,7 @@ import TypeFormat from "ct/util/TypeFormat";
 import ct_when from "ct/_when";
 import apprt_request from "apprt-request";
 import d_array from "dojo/_base/array";
+import stringEscape from "apprt-core/string-escape";
 
 export default declare([ComplexMemory], {
     jsonp: true,
@@ -29,8 +30,10 @@ export default declare([ComplexMemory], {
         // register new formatter at ct/util/TypeFormatter class
         TypeFormat["stars"] = function (value) {
             // eslint-disable-next-line max-len
-            const star = '<svg aria-label="stars" class="octicon octicon-star" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill="#f1c40f" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74z"></path></svg>'
-            return star + " " + value;
+            const star = '<svg aria-label="stars" class="octicon octicon-star" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill="#f1c40f" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74z"></path></svg>';
+            return {
+                html: `${star} ${stringEscape(value)}`
+            };
         };
 
         if (TypeFormat["version"]) {
