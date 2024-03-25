@@ -13,7 +13,8 @@
         "dataview": "^4.0.0",
         "apprt-vue": "^4.3.0",
         "apprt-binding": "^4.3.0",
-        "apprt-vuetify": "^4.3.0"
+        "apprt-vuetify": "^4.3.0",
+        "store-api": "^4.14.0"
     },
     "editor": {
         "suggest": false

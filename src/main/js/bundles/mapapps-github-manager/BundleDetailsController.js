@@ -19,7 +19,7 @@ import _Connect from "ct/_Connect";
 import ct_when from "ct/_when";
 import Hash from "ct/Hash";
 import apprt_request from "apprt-request";
-import ComplexMemory from "ct/store/ComplexMemory";
+import { SyncInMemoryStore } from "store-api/InMemoryStore";
 
 export default declare([_Connect], {
     // injected
@@ -131,7 +131,7 @@ export default declare([_Connect], {
                 releases.sort((a, b) => b.name.replace(/\d+/g, n => +n + 100000)
                     .localeCompare(a.name.replace(/\d+/g, n => +n + 100000)));
 
-                const tagsStore = new ComplexMemory({
+                const tagsStore = new SyncInMemoryStore({
                     id: id,
                     idProperty: "name",
                     data: releases // version contained here
