@@ -1,20 +1,24 @@
 {
     "name": "mapapps-github-manager",
     "version": "1.4.5-SNAPSHOT",
-    "title": "${bundleName}",
-    "description": "${bundleDescription}",
+    "title": "GitHub Bundle Management",
+    "description": "Integrate GitHub bundles into your map.apps installation",
     "vendor": "con terra GmbH",
     "productName": "mapapps-github-manager",
     "keywords": [
         "manager"
     ],
     "dependencies": {
-        "dataform": "^4.0.0",
-        "dataview": "^4.0.0",
-        "apprt-vue": "^4.3.0",
-        "apprt-binding": "^4.3.0",
-        "apprt-vuetify": "^4.3.0",
-        "store-api": "^4.14.0"
+        "ct": "^4.17.0",
+        "dojo": "^1.17.0",
+        "dijit": "^1.17.0",
+        "dataform": "^4.17.0",
+        "dataview": "^4.17.0",
+        "apprt-vue": "^4.17.0",
+        "apprt-request": "^4.17.0",
+        "apprt-core": "^4.17.0",
+        "apprt-vuetify": "^4.17.0",
+        "store-api": "^4.17.0"
     },
     "editor": {
         "suggest": false
@@ -65,17 +69,15 @@
                 "ct.api.Store",
                 "mapapps-github-manager.BundleStore"
             ],
-            "propertiesConstructor": true,
+            "immediate": true,
+            "instanceFactory": true,
             "properties": {
                 "id": "githubBundlesStore",
-                "useIn": [
-                    "mapapps-github-manager"
-                ],
-                "target": "https://api.github.com/search/repositories",
-                "user": "conterra",
-                "topic": "mapapps",
-                "highlightTopic": "highlight",
-                "itemProperty": "data"
+                "-target": "https://api.github.com/search/repositories",
+                "-user": "conterra",
+                "-topic": "mapapps",
+                "-highlightTopic": "highlight",
+                "-itemProperty": "data"
             }
         },
         {
