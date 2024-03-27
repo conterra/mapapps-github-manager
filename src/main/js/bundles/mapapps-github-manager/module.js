@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ".";
-import "./BundleStore";
-import "./BundleDetailsController";
-import "./BundleWidgetFactory";
-import "./FilterHandler";
+export { default as BundleStore } from "./BundleStore";
+export { default as BundleDetailsController } from "./BundleDetailsController";
+export { default as BundleWidgetFactory } from "./BundleWidgetFactory";
+//import "./FilterHandler";
 import "dataview/DataView";
 import "dataview/DataViewController";
 import "ct/tools/Tool";

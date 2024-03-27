@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 module.exports = {
-    bundleName: "GitHub Bundle Installer",
-    bundleDescription: "Bietet eine Oberfl\u00E4che zur GitHub-Bundle-Installation",
     bundleListTool: {
         title: "Developer Network Bundles"
     },
@@ -61,7 +59,7 @@ module.exports = {
         productName: "Produktname"
     },
     bundleDetailsView: {
-        windowTitle: "Bundle '{name}'",
+        windowTitle: "Bundle '${name}'",
         createWindowTitle: "Bundle hochladen",
         noReleasesYet: "Dieses Bundle hat leider noch keine Releases.",
         noReleasesTitle: "Kein Release gefunden",

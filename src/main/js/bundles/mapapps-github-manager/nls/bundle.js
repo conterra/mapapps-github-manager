@@ -15,9 +15,6 @@
  */
 module.exports = {
     root: {
-        bundleName: "GitHub Bundle Management",
-        bundleDescription: "Integrate GitHub bundles into your map.apps installation",
-
         bundleListTool: {
             title: "Developer Network Bundles"
         },
@@ -64,7 +61,7 @@ module.exports = {
             productName: "Product Name"
         },
         bundleDetailsView: {
-            windowTitle: "Bundle '{name}'",
+            windowTitle: "Bundle '${name}'",
             createWindowTitle: "Bundle Upload",
             noReleasesYet: "Sorry, this bundle doesn't have any releases yet.",
             noReleasesTitle: "No releases found",

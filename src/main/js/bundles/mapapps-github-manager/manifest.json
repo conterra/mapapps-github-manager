@@ -1,19 +1,25 @@
 {
     "name": "mapapps-github-manager",
     "version": "1.4.5-SNAPSHOT",
-    "title": "${bundleName}",
-    "description": "${bundleDescription}",
+    "title": "GitHub Bundle Management",
+    "description": "Integrate GitHub bundles into your map.apps installation",
     "vendor": "con terra GmbH",
     "productName": "mapapps-github-manager",
-    "keywords": [
-        "manager"
-    ],
+    "keywords": ["manager"],
+    "main": "",
+    "layer": "module",
+    "i18n": ["bundle"],
     "dependencies": {
-        "dataform": "^4.0.0",
-        "dataview": "^4.0.0",
-        "apprt-vue": "^4.3.0",
-        "apprt-binding": "^4.3.0",
-        "apprt-vuetify": "^4.3.0"
+        "ct": "^4.17.0",
+        "dojo": "^1.17.0",
+        "dijit": "^1.17.0",
+        "dataform": "^4.17.0",
+        "dataview": "^4.17.0",
+        "apprt-vue": "^4.17.0",
+        "apprt-request": "^4.17.0",
+        "apprt-core": "^4.17.0",
+        "apprt-vuetify": "^4.17.0",
+        "store-api": "^4.17.0"
     },
     "editor": {
         "suggest": false
@@ -21,9 +27,7 @@
     "cssThemesExtension": [
         {
             "name": "*",
-            "files": [
-                "./css/styles.css"
-            ]
+            "files": ["./css/styles.css"]
         }
     ],
     "layout-widgets": [
@@ -60,29 +64,22 @@
         },
         {
             "name": "BundleStore",
-            "provides": [
-                "ct.api.Store",
-                "mapapps-github-manager.BundleStore"
-            ],
-            "propertiesConstructor": true,
+            "provides": ["ct.api.Store", "mapapps-github-manager.BundleStore"],
+            "immediate": true,
+            "instanceFactory": true,
             "properties": {
                 "id": "githubBundlesStore",
-                "useIn": [
-                    "mapapps-github-manager"
-                ],
-                "target": "https://api.github.com/search/repositories",
-                "user": "conterra",
-                "topic": "mapapps",
-                "highlightTopic": "highlight",
-                "itemProperty": "data"
+                "-target": "https://api.github.com/search/repositories",
+                "-user": "conterra",
+                "-topic": "mapapps",
+                "-highlightTopic": "highlight",
+                "-itemProperty": "data"
             }
         },
         {
             "name": "BundleListTool",
             "impl": "ct/tools/Tool",
-            "provides": [
-                "ct.tools.Tool"
-            ],
+            "provides": ["ct.tools.Tool"],
             "propertiesConstructor": true,
             "properties": {
                 "id": "appmanagement_githubBundleListTool",
@@ -93,9 +90,7 @@
                 "togglable": true,
                 "iconClass": "icon-download",
                 "rules": {
-                    "roles": [
-                        "maAdmin"
-                    ],
+                    "roles": ["maAdmin"],
                     "ruleSuccessProperty": "visibility"
                 }
             }
@@ -103,9 +98,7 @@
         {
             "name": "BundleViewToolbar",
             "impl": "ct/tools/ToolContainer",
-            "provides": [
-                "mapapps-github-manager.BundlesViewToolbar"
-            ],
+            "provides": ["mapapps-github-manager.BundlesViewToolbar"],
             "references": [
                 {
                     "name": "tool",
@@ -118,10 +111,7 @@
         {
             "name": "GithubBundlesDataView",
             "impl": "dataview/DataView",
-            "provides": [
-                "dijit.Widget",
-                "mapapps-github-manager.GithubBundlesDataView"
-            ],
+            "provides": ["dijit.Widget", "mapapps-github-manager.GithubBundlesDataView"],
             "propertiesConstructor": true,
             "properties": {
                 "id": "githubBundlesDataView",
@@ -191,16 +181,11 @@
         {
             "name": "BundlesDataViewController",
             "impl": "dataview/DataViewController",
-            "provides": [
-                "ct.framework.api.EventHandler",
-                "mapapps-github-manager.BundlesDataViewController"
-            ],
+            "provides": ["ct.framework.api.EventHandler", "mapapps-github-manager.BundlesDataViewController"],
             "properties": {
                 "Event-Topics": [
                     {
-                        "topic": [
-                            "mapapps-github-manager/BUNDLES_UPLOADED"
-                        ],
+                        "topic": ["mapapps-github-manager/BUNDLES_UPLOADED"],
                         "method": "refreshView"
                     }
                 ],
@@ -232,17 +217,12 @@
         },
         {
             "name": "BundleDetailsController",
-            "provides": [
-                "ct.framework.api.EventHandler",
-                "mapapps-github-manager.BundleDetailsController"
-            ],
+            "provides": ["ct.framework.api.EventHandler", "mapapps-github-manager.BundleDetailsController"],
             "properties": {
                 "uploadTarget": "@@applicationURL.noscheme@@/resources/jsregistry/upload",
                 "Event-Topics": [
                     {
-                        "topic": [
-                            "mapapps-github-manager/BUNDLE_SHOWDETAILS"
-                        ],
+                        "topic": ["mapapps-github-manager/BUNDLE_SHOWDETAILS"],
                         "method": "showDetails"
                     }
                 ]

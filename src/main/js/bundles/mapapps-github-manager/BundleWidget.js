@@ -18,7 +18,7 @@ import _Widget from "dijit/_Widget";
 import domConstruct from "dojo/dom-construct";
 import _TemplatedMixin from "dijit/_TemplatedMixin";
 import _WidgetsInTemplateMixin from "dijit/_WidgetsInTemplateMixin";
-import template from "dojo/text!./templates/BundleWidget.html";
+import template from "text!./templates/BundleWidget.html";
 import "dijit/layout/BorderContainer";
 import "dijit/layout/ContentPane";
 
@@ -27,7 +27,7 @@ export default declare([_Widget, _TemplatedMixin, _WidgetsInTemplateMixin], {
     baseClass: "bundleWidget",
     templateString: template,
 
-    postCreate: function () {
+    postCreate() {
         this.inherited(arguments);
 
         this._centerContentPane.set("content", this.githubBundlesDataView);
@@ -35,7 +35,7 @@ export default declare([_Widget, _TemplatedMixin, _WidgetsInTemplateMixin], {
         //this._addFilterText();
     },
 
-    resize: function (dims) {
+    resize(dims) {
         this._container.resize(dims);
     }
 
