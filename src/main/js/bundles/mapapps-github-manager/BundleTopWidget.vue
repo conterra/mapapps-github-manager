@@ -114,7 +114,8 @@
                                 <v-img
                                     :src="bundle.html_url + '/raw/' + bundle.default_branch + '/' + 'screenshot.JPG'"
                                     height="250px"
-                                    @click="openLink(bundle.html_url + '/raw/' + bundle.default_branch + '/' + 'screenshot.JPG')"
+                                    @click="openLink(bundle.html_url
+                                        + '/raw/' + bundle.default_branch + '/' + 'screenshot.JPG')"
                                 />
                             </v-flex>
                         </v-layout>
@@ -125,11 +126,7 @@
     </div>
 </template>
 <script>
-    import Bindable from "apprt-vue/mixins/Bindable";
-    import ct_when from "ct/_when";
-
     export default {
-        mixins: [Bindable],
         data: function () {
             return {
                 i18n: {},
@@ -137,11 +134,10 @@
                 selectedTag: null
             };
         },
-        mounted: function () {
+        async mounted() {
             const highlightTopic = this.store.highlightTopic;
-            ct_when(this.store.query({}), (results) => {
-                this.bundles = results.filter((bundle) => !!bundle.topics.includes(highlightTopic));
-            });
+            const highlightBundles =  await this.store.query({topics: {$elemMatch: [{$eq: highlightTopic}]}});
+            this.bundles = highlightBundles;
         },
         methods: {
             openLink: function (url) {
