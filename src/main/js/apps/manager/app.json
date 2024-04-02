@@ -4,6 +4,10 @@
     "title": "Manager"
   },
   "load": {
+    "bundleLocations": [
+        "localbundles",
+        "bundles"
+    ],
     "allowedBundles": [
       "system",
       "splashscreen",
@@ -14,10 +18,6 @@
       "managementlayout",
       "theme-everlasting",
       "mapapps-github-manager"
-    ],
-    "bundleLocations": [
-      "localbundles",
-      "bundles"
     ]
   },
   "bundles": {
