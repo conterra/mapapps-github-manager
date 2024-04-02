@@ -1,6 +1,6 @@
 {
     "name": "mapapps-github-manager",
-    "version": "1.4.6",
+    "version": "1.4.7-SNAPSHOT",
     "title": "GitHub Bundle Management",
     "description": "Integrate GitHub bundles into your map.apps installation",
     "vendor": "con terra GmbH",
