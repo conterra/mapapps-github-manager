@@ -226,7 +226,7 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.5.0</version>
                 <executions>
-                    <execution>
+                    <!--<execution>
                         <id>unpack-themes-src</id>
                         <phase>generate-sources</phase>
                         <goals>
@@ -244,7 +244,7 @@
                                     <excludes>layout/theme-everlasting/styles/vuetify/**</excludes>
                                 </artifactItem>
                                 <artifactItem>
-                                    <!-- unpack stylus files provided by beautify to map.apps themes -->
+                                    unpack stylus files provided by beautify to map.apps themes
                                     <groupId>org.vuetifyjs</groupId>
                                     <artifactId>vuetify</artifactId>
                                     <version>${vuetify.version}</version>
@@ -254,7 +254,7 @@
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
-                    </execution>
+                    </execution>-->
                     <execution>
                         <id>copy js-libs into 'bundle-imports'</id>
                         <phase>generate-resources</phase>
