@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (C) 2021 con terra GmbH (info@conterra.de)
+    Copyright (C) 2024 con terra GmbH (info@conterra.de)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -93,10 +93,6 @@
                     <version>${ct.jsregistry.version}</version>
                 </plugin>
                 <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>2.8.2</version>
-                </plugin>
-                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>3.1.0</version>
@@ -121,6 +117,8 @@
                         <excludes>
                             <exclude>apps/**</exclude>
                             <exclude>**/tests/**</exclude>
+                            <exclude>**/sample_tests/**</exclude>
+                            <exclude>**/theme-common/**</exclude>
                         </excludes>
                     </configuration>
                 </plugin>
@@ -160,6 +158,11 @@
                     <artifactId>license-maven-plugin</artifactId>
                     <version>2.11</version>
                 </plugin>
+                <plugin>
+                    <groupId>de.conterra.maven</groupId>
+                    <artifactId>setproperties-maven-plugin</artifactId>
+                    <version>1.0.2</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <sourceDirectory>src/main/js</sourceDirectory>
@@ -197,9 +200,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <!-- add here properties which are used in plugin configuration resolution -->
                     <properties>
-                        <!-- deployment of map.apps installation -->
                         <mapapps.remote.base>.</mapapps.remote.base>
                     </properties>
                 </configuration>
@@ -225,7 +226,7 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.5.0</version>
                 <executions>
-                    <execution>
+                    <!--<execution>
                         <id>unpack-themes-src</id>
                         <phase>generate-sources</phase>
                         <goals>
@@ -236,15 +237,14 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>de.conterra.mapapps</groupId>
-                                    <artifactId>ct-mapapps-js-api</artifactId>
-                                    <version>${mapapps.version}</version>
+                                    <artifactId>ct-mapapps-js</artifactId>
                                     <classifier>src</classifier>
                                     <outputDirectory>${project.build.directory}/unpacked</outputDirectory>
                                     <includes>layout/theme-everlasting/**,layout/theme-common/**</includes>
                                     <excludes>layout/theme-everlasting/styles/vuetify/**</excludes>
                                 </artifactItem>
                                 <artifactItem>
-                                    <!-- unpack stylus files provided by beautify to map.apps themes -->
+                                    unpack stylus files provided by beautify to map.apps themes
                                     <groupId>org.vuetifyjs</groupId>
                                     <artifactId>vuetify</artifactId>
                                     <version>${vuetify.version}</version>
@@ -254,7 +254,7 @@
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
-                    </execution>
+                    </execution>-->
                     <execution>
                         <id>copy js-libs into 'bundle-imports'</id>
                         <phase>generate-resources</phase>
@@ -304,6 +304,46 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <configuration>
+                    <header>${project.baseUri}apache2-license-header.txt</header>
+                    <properties>
+                        <owner>con terra GmbH</owner>
+                        <email>info@conterra.de</email>
+                        <project.inceptionYear>2024</project.inceptionYear>
+                    </properties>
+                    <includes>
+                        <include>src/main/js/**/*.js</include>
+                        <include>src/main/js/**/*.ts</include>
+                        <include>src/main/js/**/*.vue</include>
+                        <include>src/main/js/**/*.css</include>
+                        <include>src/test/**/*.js</include>
+                        <include>src/test/**/*.html</include>
+                        <include>src/test/**/*.css</include>
+                        <include>src/test/**/application.properties</include>
+                        <include>src/main/config/assembly.xml</include>
+                        <include>**/build.properties</include>
+                        <include>**/gulpfile.js</include>
+                        <include>**/pom.xml</include>
+                    </includes>
+                    <excludes>
+                        <exclude>src/main/js/**/*.min.js</exclude>
+                    </excludes>
+                    <mapping>
+                        <vue>XML_STYLE</vue>
+                    </mapping>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>com.google.code.maven-replacer-plugin</groupId>
                 <artifactId>replacer</artifactId>
                 <executions>
@@ -322,9 +362,8 @@
                             <replacements>
                                 <replacement>
                                     <!-- remove bundleLocations from app.json -->
-                                    <token>
-                                        \s*"bundleLocations"\s*:\s*\[\s*"localbundles"\s*,\s*"bundles"\s*\]\s*,\s*</token>
-                                    <value />
+                                    <token>\s*"bundleLocations"\s*:\s*\[\s*"localbundles"\s*,\s*"bundles"\s*\]\s*,</token>
+                                    <value></value>
                                 </replacement>
                             </replacements>
                         </configuration>
@@ -341,6 +380,11 @@
                         <goals>
                             <goal>buildPacksProperties</goal>
                         </goals>
+                        <configuration>
+                            <!-- don't list not shipped bundles in the
+                            META-INF\js-registry-packs.properties file -->
+                            <scanPackagesExcludes>apps/**,bundles/sample_tests</scanPackagesExcludes>
+                        </configuration>
                     </execution>
                 </executions>
                 <configuration>
@@ -351,6 +395,12 @@
             <plugin>
                 <groupId>de.conterra.mapapps</groupId>
                 <artifactId>mapapps-maven-plugin</artifactId>
+                <configuration>
+                    <!-- only build zip files -->
+                    <skipDeploy>true</skipDeploy>
+                    <sourceDirectory>${js.build.outputPath}/apps</sourceDirectory>
+                    <outputDirectory>${project.build.directory}</outputDirectory>
+                </configuration>
                 <executions>
                     <execution>
                         <!-- used to create .zip files containing the apps during the build -->
@@ -377,50 +427,6 @@
                                 </templateResource>
                             </templateResources>
                         </configuration>
-                    </execution>
-                </executions>
-                <configuration>
-                    <!-- only build zip files -->
-                    <skipDeploy>true</skipDeploy>
-                    <createApp>false</createApp>
-                    <sourceDirectory>${js.build.outputPath}/apps</sourceDirectory>
-                    <outputDirectory>${project.build.directory}</outputDirectory>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.mycila</groupId>
-                <artifactId>license-maven-plugin</artifactId>
-                <configuration>
-                    <header>${project.baseUri}apache2-license-header.txt</header>
-                    <properties>
-                        <owner>con terra GmbH</owner>
-                        <email>info@conterra.de</email>
-                        <project.inceptionYear>2021</project.inceptionYear>
-                    </properties>
-                    <includes>
-                        <include>src/main/js/**/*.js</include>
-                        <include>src/main/js/**/*.ts</include>
-                        <include>src/main/js/**/*.vue</include>
-                        <include>src/main/js/**/*.css</include>
-                        <include>src/test/**/*.js</include>
-                        <include>src/test/**/*.html</include>
-                        <include>src/test/**/*.css</include>
-                        <include>src/test/**/application.properties</include>
-                        <include>src/main/config/assembly.xml</include>
-                        <include>**/build.properties</include>
-                        <include>**/gulpfile.js</include>
-                        <include>**/pom.xml</include>
-                    </includes>
-                    <mapping>
-                        <vue>XML_STYLE</vue>
-                    </mapping>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>format</goal>
-                        </goals>
-                        <phase>process-sources</phase>
                     </execution>
                 </executions>
             </plugin>
@@ -464,11 +470,11 @@
     </distributionManagement>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- dojo custom build parameters -->
         <root.build.outputPath>${project.build.directory}/webapp</root.build.outputPath>
         <js.build.outputPath>${root.build.outputPath}/js</js.build.outputPath>
 
         <mapapps.version>4.17.0</mapapps.version>
+        <vuetify.version>1.5.28</vuetify.version>
         <!-- JS lib versions -->
         <apprt.version>${mapapps.version}</apprt.version>
         <!-- java lib versions -->
@@ -478,10 +484,18 @@
         <!-- the default app, replaced in the *.html files to switch app names-->
         <default.app.name>manager</default.app.name>
 
+        <!-- don't do this in production configuration! This allows to go any http traffic over the
+        /proxy endpoint -->
+        <proxy.allowedServerUrls>
+            *://*:*/**;
+        </proxy.allowedServerUrls>
+        <proxy.allowedSSLDNs>*</proxy.allowedSSLDNs>
+        <proxy.use.rules></proxy.use.rules>
         <cors.request.trustedServers>$\{mapapps.remote.base\}</cors.request.trustedServers>
         <proxy.use.rules></proxy.use.rules>
         <mvn.cmd>mvn</mvn.cmd>
         <gulp.task></gulp.task>
+        <gulp.node.env>development</gulp.node.env>
 
         <mapapps.user>
             <!-- set correct username for map.apps remote installation-->
@@ -492,6 +506,7 @@
         <mapapps.token>
             <!-- set correct token for map.apps remote installation-->
         </mapapps.token>
+
         <!-- set to false if map.apps is configured behind integrated windows authentication is
         required -->
         <mapapps.useChunkedRequestEncoding>true</mapapps.useChunkedRequestEncoding>
@@ -506,7 +521,7 @@
             <dependencies>
                 <dependency>
                     <groupId>de.conterra.mapapps</groupId>
-                    <artifactId>ct-mapapps-js-api</artifactId>
+                    <artifactId>ct-mapapps-js</artifactId>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
@@ -585,8 +600,8 @@
         <profile>
             <id>env-dev</id>
             <!-- This is the development profile, per default it points to a build.properties
-        file in the user home, but this can be changed localy by specifiying the
-        property local.configfile with its own string.
+                file in the user home, but this can be changed localy by specifiying the
+                property local.configfile with its own string.
             -->
             <activation>
                 <property>
@@ -637,10 +652,33 @@
             <build>
                 <plugins>
                     <plugin>
-                        <artifactId>maven-deploy-plugin</artifactId>
-                        <configuration>
-                            <updateReleaseInfo>true</updateReleaseInfo>
-                        </configuration>
+                        <groupId>de.conterra.jsregistry</groupId>
+                        <artifactId>ct-jsregistry-maven-plugin</artifactId>
+                        <executions>
+                            <!--<execution>
+                                <id>calculate js dependencies</id>
+                                <goals>
+                                    <goal>calculateDependencies</goal>
+                                </goals>
+                            </execution>-->
+                            <!--
+
+                                The optimizeJS goal is usually no longer required because compression is done via terser (see
+                            gulpfile.js 'compress' option).
+                                Uncomment this block only if you're still using `dojo/text!` in your source code.
+                                Reenabling the optimizeJS goal unfortunately removes all comments from your built JavaScript, which
+                                would incidentally also break source maps.
+
+                            <execution>
+                                <id>optimize js</id>
+                                <goals>
+                                    <goal>optimizeJS</goal>
+                                </goals>
+                                <configuration>
+                                    <compress>false</compress>
+                                </configuration>
+                            </execution> -->
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
@@ -655,8 +693,6 @@
                         <configuration>
                             <skipDeploy>${skip.apps.upload}</skipDeploy>
                             <deployAsApp>true</deployAsApp>
-                            <appName>${project.artifactId}</appName>
-                            <appTitle>${project.artifactId}-${project.version}</appTitle>
                             <appEditorState>PUBLISHED</appEditorState>
                             <serverResourcesEndpoint>${mapapps.remote.base}/resources</serverResourcesEndpoint>
                             <username>${mapapps.user}</username>
