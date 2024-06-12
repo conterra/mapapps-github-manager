@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 con terra GmbH (info@conterra.de)
+ * Copyright (C) 2023 con terra GmbH (info@conterra.de)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,14 +66,12 @@ mapapps.registerTasks({
     /* a list of themes inside this project */
     themes: [],
     /* state that the custom theme will be dependant from map.apps everlasting theme that provides the base styles */
-    hasBaseThemes: false,
+    hasBaseThemes: true,
     /* state that we want to support vuetify components and therefore need the vuetify core styles*/
-    hasVuetify: false,
-    /*themeChangeTargets: {
-        "vuetify": [
-            "theme-custom"
-        ]
-    },*/
+    hasVuetify: true,
+    themeChangeTargets: {
+        "vuetify": []
+    },
     /* A list oft target browser versions. This should be streamlined with Esri JS API requirements. */
     transpileTargets: {
         firefox: 102,
