@@ -55,7 +55,7 @@ async function fetchBundlesFromGitHub(target, user, topic) {
                 Accept: "application/vnd.github.mercy-preview+json"
             }
         });
-        const filteredData = data.items.filter((item) => item.topics.includes("4x"));
+        const filteredData = data.items.filter((item) => item.topics.includes("4x") && item.archived === false);
         return filteredData;
     } catch (e) {
         console.error(`Error fetching data from github ${url}:`, e);
