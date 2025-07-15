@@ -15,7 +15,7 @@
  */
 import { AsyncInMemoryStore } from "store-api/InMemoryStore";
 import TypeFormat from "ct/util/TypeFormat";
-import apprt_request from "apprt-request";
+import { apprtFetchJson } from "apprt-fetch";
 import stringEscape from "apprt-core/string-escape";
 
 export default class BundleStoreFactory {
@@ -49,8 +49,8 @@ async function fetchBundlesFromGitHub(target, user, topic) {
     }
     url = url + "&per_page=100";
     try {
-        const data = await apprt_request(url, {
-            useProxy: false,
+        const data = await apprtFetchJson(url, {
+            proxyMode: "force-off",
             headers: {
                 Accept: "application/vnd.github.mercy-preview+json"
             }

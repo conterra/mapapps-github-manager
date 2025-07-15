@@ -16,7 +16,7 @@
         "dataform": "^4.17.0",
         "dataview": "^4.17.0",
         "apprt-vue": "^4.17.0",
-        "apprt-request": "^4.17.0",
+        "apprt-fetch": "^4.17.0",
         "apprt-core": "^4.17.0",
         "apprt-vuetify": "^4.17.0",
         "store-api": "^4.17.0"
@@ -111,7 +111,10 @@
         {
             "name": "GithubBundlesDataView",
             "impl": "dataview/DataView",
-            "provides": ["dijit.Widget", "mapapps-github-manager.GithubBundlesDataView"],
+            "provides": [
+                "dijit.Widget",
+                "mapapps-github-manager.GithubBundlesDataView"
+            ],
             "propertiesConstructor": true,
             "properties": {
                 "id": "githubBundlesDataView",
@@ -181,7 +184,10 @@
         {
             "name": "BundlesDataViewController",
             "impl": "dataview/DataViewController",
-            "provides": ["ct.framework.api.EventHandler", "mapapps-github-manager.BundlesDataViewController"],
+            "provides": [
+                "ct.framework.api.EventHandler",
+                "mapapps-github-manager.BundlesDataViewController"
+            ],
             "properties": {
                 "Event-Topics": [
                     {
@@ -217,7 +223,10 @@
         },
         {
             "name": "BundleDetailsController",
-            "provides": ["ct.framework.api.EventHandler", "mapapps-github-manager.BundleDetailsController"],
+            "provides": [
+                "ct.framework.api.EventHandler",
+                "mapapps-github-manager.BundleDetailsController"
+            ],
             "properties": {
                 "uploadTarget": "@@applicationURL.noscheme@@/resources/jsregistry/upload",
                 "Event-Topics": [
