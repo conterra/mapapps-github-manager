@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 import Hash from "ct/Hash";
-import apprt_request from "apprt-request";
+import { apprtFetch, apprtFetchJson } from "apprt-fetch";
 import { replace } from "apprt-core/string-replace";
+import { sourceId } from "source-info!";
+import { loggerForName } from "apprt-core/Logger";
+const LOG = loggerForName(sourceId);
 
 export default class BundleDetailsController {
     // injected
@@ -117,8 +120,10 @@ export default class BundleDetailsController {
     async _lookupAvailableTags(repositoryName) {
         const tagsUrl = "https://api.github.com/repos/conterra/" + repositoryName + "/releases";
         try {
-            const response = await apprt_request(tagsUrl, { jsonp: true });
-            const releases = response.data.filter((release) => !release.name.includes("SNAPSHOT"));
+            const data = await apprtFetchJson(tagsUrl, {
+                proxyMode: "force-off"
+            });
+            const releases = data.filter((release) => !release.name.includes("SNAPSHOT"));
             releases.sort((a, b) =>
                 b.name.replace(/\d+/g, (n) => +n + 100000).localeCompare(a.name.replace(/\d+/g, (n) => +n + 100000))
             );
@@ -191,10 +196,10 @@ export default class BundleDetailsController {
         }
     }
 
-    _downloadArchive(url) {
-        return apprt_request(url, {
-            handleAs: "blob"
-        });
+    async _downloadArchive(url) {
+        // Currently throws a CORS error (from GitHub) and then uses the map.apps proxy.
+        const response = await apprtFetch(url, { checkStatus: true });
+        return await response.blob();
     }
 
     async _uploadBundle(blob, itemName) {
@@ -205,8 +210,11 @@ export default class BundleDetailsController {
         formData.append("file", blob, fileName);
         formData.append("f", "json");
         try {
-            await apprt_request.post(url, {
-                data: formData
+            await apprtFetch(url, {
+                method: "POST",
+                body: formData,
+                checkStatus: true,
+                proxyMode: "force-off"
             });
             this.buttonWidget.set("disabled", false);
             this.buttonWidget.set("iconClass", "icon-sign-success");
@@ -216,6 +224,7 @@ export default class BundleDetailsController {
                 this.detailWindow.close();
             }, 1500);
         } catch (e) {
+            LOG.error("Failed to upload bundle", e);
             this.detailWindow.set("content", this.i18n.integrationFailed);
         }
     }

@@ -1,3 +1,4 @@
+✅ Tested for map.apps 4.20.0 / Linie 4
 ✅ Tested for map.apps 4.18.3 / Linie 4
 
 #### Release Notes
