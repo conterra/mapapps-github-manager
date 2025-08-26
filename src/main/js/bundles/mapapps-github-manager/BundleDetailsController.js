@@ -120,7 +120,9 @@ export default class BundleDetailsController {
     async _lookupAvailableTags(repositoryName) {
         const tagsUrl = "https://api.github.com/repos/conterra/" + repositoryName + "/releases";
         try {
-            const data = await apprtFetchJson(tagsUrl);
+            const data = await apprtFetchJson(tagsUrl, {
+                proxyMode: "force-off"
+            });
             const releases = data.filter((release) => !release.name.includes("SNAPSHOT"));
             releases.sort((a, b) =>
                 b.name.replace(/\d+/g, (n) => +n + 100000).localeCompare(a.name.replace(/\d+/g, (n) => +n + 100000))
@@ -211,7 +213,8 @@ export default class BundleDetailsController {
             await apprtFetch(url, {
                 method: "POST",
                 body: formData,
-                checkStatus: true
+                checkStatus: true,
+                proxyMode: "force-off"
             });
             this.buttonWidget.set("disabled", false);
             this.buttonWidget.set("iconClass", "icon-sign-success");
