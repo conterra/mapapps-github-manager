@@ -112,10 +112,10 @@
                                 class="hidden-xs-and-down"
                             >
                                 <v-img
-                                    :src="bundle.html_url + '/raw/' + bundle.default_branch + '/' + 'screenshot.JPG'"
+                                    :src="bundle.html_url + '/raw/' + bundle.default_branch + '/' + 'screenshot.png'"
                                     height="250px"
                                     @click="openLink(bundle.html_url
-                                        + '/raw/' + bundle.default_branch + '/' + 'screenshot.JPG')"
+                                        + '/raw/' + bundle.default_branch + '/' + 'screenshot.png')"
                                 />
                             </v-flex>
                         </v-layout>
