@@ -103,18 +103,7 @@ export default class BundleDetailsController {
             return;
         }
         const item = await this.store.get(id);
-        if (item?.has_downloads) {
-            this._createWindow(item, i18n);
-        } else {
-            const w = (this.detailWindow = this.windowManager.createModalWindow({
-                title: i18n.noReleasesTitle,
-                draggable: true,
-                dndDraggable: false,
-                content: i18n.noReleasesYet,
-                closable: true
-            }));
-            w.show();
-        }
+        this._createWindow(item, i18n);
     }
 
     async _lookupAvailableTags(repositoryName) {
