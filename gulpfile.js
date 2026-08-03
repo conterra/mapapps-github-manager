@@ -17,6 +17,8 @@ const gulp = require("gulp");
 const mapapps = require('ct-mapapps-gulp-js');
 const mapappsBrowserSync = require("ct-mapapps-browser-sync");
 const dotEnv = require("dotenv");
+const { spawn } = require('child_process');
+
 // load .env file if it exits
 // the local dev jsregistry will lookup any @@key.property@@ expression, also as environment variable with name "KEY_PROPERTY" for replacement.
 dotEnv.config();
@@ -159,6 +161,42 @@ gulp.task("run-tests",
             return Promise.resolve();
         },
         "run-browser-tests",
+        "browser-sync-stop"
+    ));
+
+gulp.task(
+    "end-to-end-tests",
+    gulp.series(
+        "browser-sync-start",
+        function playwright(done) {
+            console.info(`Running end to end tests`);
+            const updateSnapshots = /^true$/i.test(process.env.UPDATE_SNAPSHOTS ?? "");
+            const args = ["run", "e2e-test"];
+            if (updateSnapshots) {
+                args.push("--update-snapshots");
+            }
+            const child = spawn("pnpm", ["run", "e2e-test"], {
+                stdio: ["inherit", "pipe", "pipe"],
+                env: { ...process.env, CI: "true" }
+            });
+
+            child.stdout.on("data", (data) => {
+                console.info(`${data}`);
+            });
+
+            child.stderr.on("data", (data) => {
+                console.error(`${data}`);
+            });
+
+            child.on("close", (code) => {
+                if (code !== 0) {
+                    return done(
+                        new Error(`Command failed with exit code ${code}`)
+                    );
+                }
+                done();
+            });
+        },
         "browser-sync-stop"
     ));
 

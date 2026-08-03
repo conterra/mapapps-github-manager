@@ -623,6 +623,12 @@
             </properties>
         </profile>
         <profile>
+            <id>run-end-to-end-tests</id>
+            <properties>
+                <gulp.task>end-to-end-tests</gulp.task>
+            </properties>
+        </profile>
+        <profile>
             <id>compress</id>
             <properties>
                 <gulp.task>compress</gulp.task>
