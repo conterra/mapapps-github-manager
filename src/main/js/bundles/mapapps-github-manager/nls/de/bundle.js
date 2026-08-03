@@ -62,7 +62,6 @@ module.exports = {
         windowTitle: "Bundle '${name}'",
         createWindowTitle: "Bundle hochladen",
         noReleasesYet: "Dieses Bundle hat leider noch keine Releases.",
-        noReleasesTitle: "Kein Release gefunden",
         notFound: "Das Bundle konnte leider nicht von GitHub heruntergeladen werden.",
         integrationFailed: "Ein Fehler trat auf, das Bundle konnte leider nicht in map.apps integriert werden.",
         integrationSuccess: "Bundle installiert.",
