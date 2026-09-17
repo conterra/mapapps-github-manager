@@ -46,6 +46,12 @@ const config: PlaywrightTestConfig = {
                 outputFolder: "./target/end-to-end/reports/html",
                 open: envCI ? "never" : "on-failure"
             }
+        ],
+        [
+            "junit",
+            {
+                outputFile: "./target/end-to-end/junit.xml"
+            }
         ]
     ],
 
